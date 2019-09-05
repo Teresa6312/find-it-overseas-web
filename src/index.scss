@@ -1,0 +1,23 @@
+/* Define standard variables and values for website */
+$ivory: #fffff0;
+$seagreen: #20b2aa;
+$gold: #ffd700;
+$fontsize: 18px;
+
+/* Use the variables */
+body {
+  color: $seagreen;
+  font-size: $fontsize;
+  font-family: arial,sans-serif;
+  margin: 0;
+}
+
+a{
+  text-decoration: none;
+  color:$seagreen;
+  cursor: pointer;
+}
+hr{
+  border: 1px solid $gold;
+  margin: 5px;
+}
