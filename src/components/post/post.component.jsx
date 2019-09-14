@@ -1,8 +1,8 @@
 import React from 'react';
 import './post.style.scss';
 import classNames from 'classnames'
-import {CheckBox} from '../checkbox.component/check-box.component'
-import {SearchBox} from '../search-box.component/search-box.component'
+import {CheckBoxInput} from '../input-checkbox.component/input-checkbox.component'
+import {SearchInput} from '../input-search.component/input-search.component'
 import {SingleChoice } from '../single-choice.component/single-choice.component';
 
 export class Post extends React.Component {
@@ -11,28 +11,17 @@ export class Post extends React.Component {
         super(props);
         this.state = {
             displayAsList : true,
-            posts :[
-                {
-                    type:'post',
-                    title:"hello post"
-                },
-                {
-                    type:'service',
-                    title:'hello service'
-                },
-                {
-                    type:"product",
-                    title:"hello product"
-                },
-                {
-                    type:"supplement",
-                    title:"hello supplement"
-                }],
             selectedPostType:"all",
             searchField: '',
             selectedTabs : ['red', 'car','chair']
         }
     }
+    selectPostType = (e=>
+        this.setState({
+          selectedPostType: e.currentTarget.value
+        }));
+
+        
     render(){
         const PostBlockDisplayClassName = classNames(
             'post-block-display', 
@@ -41,7 +30,57 @@ export class Post extends React.Component {
         const itemContainerClassName = classNames('post-block-display-item-container', 
             this.state.displayAsList? "post-block-display-list-container": "post-block-display-card-container"
             );
-        const {searchField, posts,selectedPostType} = this.state;
+        const posts = [
+            {
+                type:'post',
+                title:"hello post"
+            },
+            {
+                type:'service',
+                title:'hello service'
+            },
+            {
+                type:"product",
+                title:"hello product"
+            },
+            {
+                type:"supplement",
+                title:"hello supplement"
+            },
+            {
+                type:'post',
+                title:"hello post"
+            },
+            {
+                type:'service',
+                title:'hello service'
+            },
+            {
+                type:"product",
+                title:"hello product"
+            },
+            {
+                type:"supplement",
+                title:"hello supplement"
+            },
+            {
+                type:'post',
+                title:"hello post"
+            },
+            {
+                type:'service',
+                title:'hello service'
+            },
+            {
+                type:"product",
+                title:"hello product"
+            },
+            {
+                type:"supplement",
+                title:"hello supplement"
+            }
+        ];
+        const {searchField, selectedPostType} = this.state;
         const filterPost = posts.filter(post=>{
             if(selectedPostType==="all"){
                 return post.title.toLowerCase().includes(searchField.toLowerCase()) 
@@ -54,26 +93,24 @@ export class Post extends React.Component {
             }       
             })
         const   postTypes = ['all','product', 'service', 'supplement']
-        const   selectPostType = (e=>
-                    this.setState({
-                      selectedPostType: e.currentTarget.value
-                    }));
         return(
             <div className='post-block'> 
-                <SearchBox
+                <SearchInput
                     name="post-block-search"
-                    className="tab-block-search__input"
+                    className="post-block-search__input"
                     placeholder="search posts" 
                     handleChange={e=>{this.setState({searchField:e.target.value},()=>{
                         console.log("----------");
                     })}}/>
                 <SingleChoice
-                    name="post-type"
+                    name="post-block-post-types"
+                    classNames="post-block-post-types"
                     list={postTypes}
                     selectedOption = {this.state.selectedPostType}
-                    handleChange = {selectPostType}
+                    handleChange = {this.selectPostType}
                 />
-                <CheckBox 
+                <CheckBoxInput 
+                    id="post-block-display-option"
                     name="post-block-display-option"
                     addClassName = "post-block-display-option"
                     isChecked={this.state.displayAsList}

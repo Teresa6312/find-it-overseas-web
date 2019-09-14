@@ -1,23 +1,23 @@
 import React from 'react'
+import { RadioInput } from '../input-radio.component/input-radio.component'
+import classNames from 'classnames'
 
 export const SingleChoice = ({name, list, selectedOption,handleChange}) =>{
+    const divClassNames= classNames('single-choice-block__div',name+"-block__div");
     return(
-        <div className = {name}>
+        <div className = {divClassNames} key={name}>
             {list.map((item, index)=>(
-                <span>
-                    <input 
-                        key={index} 
-                        type='radio' 
-                        name={name} 
-                        value={item} 
-                        checked={item===selectedOption}
-                        onChange={handleChange}
-                    />
-                    {item}
-                </span>
+                <RadioInput 
+                    key={index}
+                    name={name}
+                    index={index}
+                    item={item}
+                    selectedOption = {selectedOption}
+                    handleChange = {handleChange}/>
             ))}
-            <h3>this.state.selectedOption: {selectedOption}</h3>
         </div>
     )
 
 }
+
+
