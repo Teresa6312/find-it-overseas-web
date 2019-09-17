@@ -1,11 +1,11 @@
 import React from 'react';
-import './post.style.scss';
-import classNames from 'classnames'
-import {CheckBoxInput} from '../input-checkbox.component/input-checkbox.component'
-import {SearchInput} from '../input-search.component/input-search.component'
-import {SingleChoice } from '../single-choice.component/single-choice.component';
+import './posts.style.scss';
+import {CheckBoxInput} from '../../components/input-checkbox.component/input-checkbox.component'
+import {SearchInput} from '../../components/input-search.component/input-search.component'
+import {SingleChoice } from '../../components/single-choice.component/single-choice.component';
+import PostItem from '../../components/post-item.component/post-item.component';
 
-export class Post extends React.Component {
+export class Posts extends React.Component {
 
     constructor(props){
         super(props);
@@ -13,7 +13,8 @@ export class Post extends React.Component {
             displayAsList : true,
             selectedPostType:"all",
             searchField: '',
-            selectedTabs : ['red', 'car','chair']
+            selectedTabs : ['red', 'car','chair'],
+            pageNum: 1
         }
     }
     selectPostType = (e=>
@@ -23,61 +24,68 @@ export class Post extends React.Component {
 
         
     render(){
-        const PostBlockDisplayClassName = classNames(
-            'post-block-display', 
-            this.state.displayAsList? "post-block-display-list": "post-block-display-card"
-            );
-        const itemContainerClassName = classNames('post-block-display-item-container', 
-            this.state.displayAsList? "post-block-display-list-container": "post-block-display-card-container"
-            );
+        const PostBlockDisplayClassName = this.state.displayAsList? "post-block-display-list": "post-block-display-card";
+        const itemContainerClassName = this.state.displayAsList? "post-block-display-list-container": "post-block-display-card-container";
         const posts = [
             {
                 type:'post',
-                title:"hello post"
+                title:"hello post",
+                id:1
             },
             {
                 type:'service',
-                title:'hello service'
+                title:'hello service',
+                id:2
             },
             {
                 type:"product",
-                title:"hello product"
+                title:"hello product",
+                id:3
             },
             {
                 type:"supplement",
-                title:"hello supplement"
+                title:"hello supplement",
+                id:4
             },
             {
                 type:'post',
-                title:"hello post"
+                title:"hello post",
+                id:5
             },
             {
                 type:'service',
-                title:'hello service'
+                title:'hello service',
+                id:6
             },
             {
                 type:"product",
-                title:"hello product"
+                title:"hello product",
+                id:7
             },
             {
                 type:"supplement",
-                title:"hello supplement"
+                title:"hello supplement",
+                id:8
             },
             {
                 type:'post',
-                title:"hello post"
+                title:"hello post",
+                id:9
             },
             {
                 type:'service',
-                title:'hello service'
+                title:'hello service',
+                id:10
             },
             {
                 type:"product",
-                title:"hello product"
+                title:"hello product",
+                id:11
             },
             {
                 type:"supplement",
-                title:"hello supplement"
+                title:"hello supplement",
+                id:12
             }
         ];
         const {searchField, selectedPostType} = this.state;
@@ -117,9 +125,13 @@ export class Post extends React.Component {
                     handleChange={e=>{this.setState({displayAsList:e.target.checked})}}
                     labelText="display as list"
                     />
-                <div className = {PostBlockDisplayClassName}>
-                    {filterPost.map((post, index)=>(
-                        <div key={index} className={itemContainerClassName}>{post.title}</div>
+                <div className = {`post-block-display ${PostBlockDisplayClassName}`}>
+                    {filterPost.map((post)=>(
+                        <PostItem 
+                            key={post.id}
+                            itemContainerClassName={`post-block-display-item-container ${itemContainerClassName}`}
+                            post={post}
+                            />
                     ))}
                 </div>
             </div>

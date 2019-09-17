@@ -1,24 +1,20 @@
 import React from 'react'
-import classNames from 'classnames' 
 import './input-radio.style.scss'
 
 export const RadioInput = (props) =>{
-    const divClassNames = classNames("radio-block", props.name + "-radio__div");
-    const inputClassNames = classNames("radio-block__input", props.name + "-radio__input");
-    const labelClassNames = classNames("radio-block__label",  props.name + "radio__label");
     return(
-        <div key={props.index} className={divClassNames}>
+        <div key={props.index} className={`radio-block ${props.name}-radio__div`}>
             <input 
                 key={props.index} 
                 type='radio' 
                 name={props.name} 
-                className={inputClassNames}
-                value={props.item} 
-                checked={props.item===props.selectedOption}
+                className={`radio-block__input ${props.name}-radio__input`}
+                value={props.option} 
+                checked={props.option===props.selectedOption}
                 onChange={props.handleChange}
             />
-            <label htmlFor={props.name} className={labelClassNames}>
-                {props.item}
+            <label htmlFor={props.name} className={`radio-block__label ${props.name}-radio__label`}>
+                {props.option}
             </label>
         </div>
     )

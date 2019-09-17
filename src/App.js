@@ -1,8 +1,12 @@
 import React from 'react';
 import './App.scss';
+import {Route, Switch} from 'react-router-dom'
 
-import {Header} from'./components/header/header.component';
-import {Post} from './components/post/post.component'
+import HomePage from './pages/home-page/home-page'
+import PostDetail from './pages/post-detail/post-detail'
+import Header from'./components/header/header.component';
+import {Posts} from './pages/posts/posts.component'
+
 import Button from 'react-bootstrap/Button';
 
 class App extends React.Component {
@@ -18,8 +22,13 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header isLoggedIn = {this.state.isLoggedIn}/>
-        <Post displayAsList={false} posts={this.state.props}/>
+        <Switch>
+          <Route exact path="/" component={HomePage}/>
+          <Route exact path="/posts/" component={Posts}/>
+          <Route path="/posts/:postID" component={PostDetail}/>
+        </Switch>
         <Button text="hello"/>
+        read=> https://stackoverflow.com/questions/51116747/react-router-v4-link-vs-redirect-vs-history
       </div>
     );
   }

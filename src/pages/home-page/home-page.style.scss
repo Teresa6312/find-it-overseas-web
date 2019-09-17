@@ -1,0 +1,39 @@
+.home-page-content{
+    text-align: center;
+
+    &-header{
+        font-size: 3vw;
+        &__span{
+            font-style: italic;
+            font-weight: bold;
+            font-family: arial;
+            color: gold;
+        }
+    }
+    &-introduction{
+        color: black;
+        &-six-degrees__span{
+            font-weight: bold;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+    &-main-menu{
+        display: inline-flex;
+        &-item{
+            // display: inline;
+            background-color: gold;
+            padding: 5vw;
+            font-size: 2vw;
+            margin: 1vw;
+            color: white;
+            border-radius: 1vw;
+            &:hover{
+                cursor: pointer;
+                transform: scale(1.02);
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+        }
+    }
+}
