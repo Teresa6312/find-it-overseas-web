@@ -10,10 +10,6 @@
 
     }
 
-    // &-display-list{
-        
-    // }
-
     &-display-item-container{
         display: flex;
         flex-direction: column;
@@ -28,14 +24,21 @@
         transition: transform 0.25s ease-out;
     }
     &-display-item-container:hover{
-        transform: scale(1.05);
+        transform: scale(1.02);
+    }
+
+    &-post-types-block__div{
+        padding: 10px 0;
+    }
+
+    &-post-types-radio__div{
+        display: inline;
     }
 
 
-
-    // &-display-list{
-
-    // }
+    &-display-option{
+        text-align: right;
+        padding: 10px 0;
+    }
 }
 
-  

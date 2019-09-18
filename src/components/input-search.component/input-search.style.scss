@@ -1,0 +1,12 @@
+.search__input{
+    border: none;
+    padding: $minisize;
+    width: 100%;
+    background-color: $lightgrey;
+    border-radius: $minisize;
+    font-size: 1rem;
+}
+  
+.search__input:focus{
+    outline-color: $gold;
+}
