@@ -1,6 +1,4 @@
 import React from 'react';
-import './filter-block.style.scss'
-
 
 export class FilterBlock extends React.Component {
 

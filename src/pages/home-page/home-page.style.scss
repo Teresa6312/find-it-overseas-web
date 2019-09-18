@@ -1,17 +1,19 @@
 .home-page-content{
     text-align: center;
-
+    margin: $supersize;
     &-header{
-        font-size: 3vw;
+        font-size: $biggersize;
+        line-height: $supersize;
         &__span{
             font-style: italic;
             font-weight: bold;
             font-family: arial;
-            color: gold;
+            color: $gold;
         }
     }
     &-introduction{
         color: black;
+        font-style: italic;
         &-six-degrees__span{
             font-weight: bold;
             &:hover{
@@ -23,16 +25,16 @@
         display: inline-flex;
         &-item{
             // display: inline;
-            background-color: gold;
-            padding: 5vw;
-            font-size: 2vw;
-            margin: 1vw;
+            background-color: $gold;
+            padding: $bigsize;
+            font-size: $middlesize;
+            margin: $middlesize $smallsize;
             color: white;
-            border-radius: 1vw;
+            border-radius: $minisize;
             &:hover{
                 cursor: pointer;
                 transform: scale(1.02);
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                box-shadow: 0 $minisize $smallsize 0 rgba(0, 0, 0, 0.2), 0 $smallsize $middlesize 0 rgba(0, 0, 0, 0.19);
             }
         }
     }

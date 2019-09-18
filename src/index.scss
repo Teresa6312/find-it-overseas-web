@@ -1,13 +1,20 @@
-/* Define standard variables and values for website */
-$ivory: #fffff0;
-$seagreen: #20b2aa;
-$gold: #ffd700;
-$fontsize: 18px;
+@import './assets/style/style.scss';
+@import './components/filter-block/filter-block.style.scss';
+@import './components/header/header.style.scss';
+@import './components/input-checkbox.component/input-checkbox.style.scss';
+@import './components/input-radio.component/input-radio.style.scss';
+@import './components/input-search.component/input-search.style.scss';
+@import './components/modal.component/modal.style.scss';
+@import './components/post-item.component/post-item.style.scss';
+@import './components/single-choice.component/single-choice.style.scss';
+@import './pages/home-page/home-page.style.scss';
+@import './pages/post-detail/post-detail.style.scss';
+@import './pages/posts/posts.style.scss';
 
 /* Use the variables */
 body {
   color: $seagreen;
-  font-size: $fontsize;
+  font-size: $smallsize;
   font-family: arial,sans-serif;
   margin: 0;
 }
@@ -17,7 +24,13 @@ a{
   color:$seagreen;
   cursor: pointer;
 }
+
 hr{
-  border: 1px solid $gold;
+  border: 2px solid $gold;
   margin: 5px;
+}
+
+button{
+  padding: $minisize;
+  font-size: $smallsize;
 }

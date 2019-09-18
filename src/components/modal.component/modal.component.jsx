@@ -1,31 +1,45 @@
 import React from 'react'
-import './model.style.scss'
-class LogInModal extends React.Component {
+
+class Modal extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            show:this.props.show
+            show:true
         }
-        console.log(this.state)
-        console.log(this.props)
-
     }
     closeModal = () =>{
-        this.setState({show:false})
+        this.setState({show:false});
+        window.location.reload();
     }
     render(){
         return (
-            <div id="myModal" className="modal">
+            <div 
+                className="modal"
+                style={{display: this.props.show&&this.state.show? "block":"none"}}
+                >
                 <div className="modal-content">
-                    <span onClick={this.closeModal}>&times;</span>
-                    <p>Some text in the Modal..</p>
-                    <div>
-                    <button onClick={this.closeModal}>close</button>
+                <div className="modal-content-close-x" onClick={this.closeModal}>&times;</div>
+                    <div className="modal-content-title">
+                    {this.props.title}
+                    </div>
+
+                    {this.props.content}
+                    <div className="modal-content-buttons">
+                        <button className="modal-content-buttons__button" onClick={this.closeModal}> close </button>
+                        {
+                            this.props.button ?
+                            <button className="modal-content-buttons__button" onClick={this.props.handelChange}> 
+                                {this.props.button} 
+                            </button>
+                            : 
+                            null
+                        }
                     </div>
                 </div>
-            </div>  
+            </div>    
         )
     }
 };
   
-export default LogInModal
+
+export default Modal

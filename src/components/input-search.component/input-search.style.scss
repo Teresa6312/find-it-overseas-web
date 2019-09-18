@@ -1,12 +1,12 @@
 .search__input{
     border: none;
-    padding: 7px 7px;
+    padding: $minisize;
     width: 100%;
-    background-color: #f1f1f1;
-    border-radius: 5px;
-    font-size: 1.3vw;
+    background-color: $lightgrey;
+    border-radius: $minisize;
+    font-size: 1rem;
 }
   
 .search__input:focus{
-    outline-color: gold;
+    outline-color: $gold;
 }

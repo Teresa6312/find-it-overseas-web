@@ -1,5 +1,4 @@
 import React from 'react'
-import './input-radio.style.scss'
 
 export const RadioInput = (props) =>{
     return(

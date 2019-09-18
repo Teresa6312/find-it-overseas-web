@@ -1,27 +1,23 @@
-// @import '../../index.scss'
-
-
 .header{
     // font-size: calc(10px + 2vmin);
-    background-color: white;
     margin:0;
     position: relative;
 
     &-logo__img{
-        height: 2.3rem;
-        margin-left: 0.5rem;
-        margin-top:0.5rem;
+        height: $bigsize;
+        margin-left: $minisize;
+        margin-top:$minisize;
     }
+
     &-main-menu__span{
         display: inline;
-        float: right;
+        text-align: right;
         position:absolute;                  
-        bottom:0.7rem;                          
+        bottom:$minisize;                          
         right:0; 
-        font-size: 0.9rem;
         cursor: pointer;
     }
     &-main-menu-item{
-        padding: 0.8rem;
+        padding: $minisize;
     }
 }

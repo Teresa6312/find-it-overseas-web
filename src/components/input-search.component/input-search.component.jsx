@@ -1,5 +1,4 @@
 import React from 'react'
-import './input-search.style.scss'
 
 export const SearchInput = ({name, className, placeholder, handleChange}) =>{
     return(

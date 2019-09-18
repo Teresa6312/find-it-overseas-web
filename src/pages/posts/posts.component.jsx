@@ -1,5 +1,4 @@
 import React from 'react';
-import './posts.style.scss';
 import {CheckBoxInput} from '../../components/input-checkbox.component/input-checkbox.component'
 import {SearchInput} from '../../components/input-search.component/input-search.component'
 import {SingleChoice } from '../../components/single-choice.component/single-choice.component';
@@ -126,13 +125,17 @@ export class Posts extends React.Component {
                     labelText="display as list"
                     />
                 <div className = {`post-block-display ${PostBlockDisplayClassName}`}>
-                    {filterPost.map((post)=>(
-                        <PostItem 
-                            key={post.id}
-                            itemContainerClassName={`post-block-display-item-container ${itemContainerClassName}`}
-                            post={post}
-                            />
-                    ))}
+                    {filterPost.length>0? 
+                        filterPost.map((post)=>(
+                            <PostItem 
+                                key={post.id}
+                                itemContainerClassName={`post-block-display-item-container ${itemContainerClassName}`}
+                                post={post}
+                                />
+                        ))
+                        :
+                        <div className={`post-block-display-item-container ${itemContainerClassName}`}> no search result</div>
+                    }
                 </div>
             </div>
         );
