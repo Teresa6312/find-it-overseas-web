@@ -4,7 +4,7 @@ import {Route, Switch} from 'react-router-dom'
 import HomePage from './pages/home-page/home-page'
 import PostDetail from './pages/post-detail/post-detail'
 import Header from'./components/header/header.component';
-import {Posts} from './pages/posts/posts.component'
+import Posts from './pages/posts/posts.component'
 
 import Button from 'react-bootstrap/Button';
 
