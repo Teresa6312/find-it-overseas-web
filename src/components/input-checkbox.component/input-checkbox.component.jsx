@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const CheckBoxInput = ({id, name, addClassName, isChecked, handleChange, labelText}) =>{
+const CheckBoxInput = ({id, name, addClassName, isChecked, handleChange, labelText}) =>{
     return(
         <div className={`checkbox-block ${addClassName}`}>
         <input type="checkbox" 
@@ -13,3 +13,5 @@ export const CheckBoxInput = ({id, name, addClassName, isChecked, handleChange, 
     </div>
     )
 }
+
+export default CheckBoxInput;

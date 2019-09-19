@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const RadioInput = (props) =>{
+const RadioInput = (props) =>{
     return(
         <div key={props.index} className={`radio-block ${props.name}-radio__div`}>
             <input 
@@ -18,5 +18,7 @@ export const RadioInput = (props) =>{
         </div>
     )
 }
+
+export default RadioInput;
 
 

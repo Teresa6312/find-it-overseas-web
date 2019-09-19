@@ -1,10 +1,10 @@
 import React from 'react';
-import {CheckBoxInput} from '../../components/input-checkbox.component/input-checkbox.component'
-import {SearchInput} from '../../components/input-search.component/input-search.component'
-import {SingleChoice } from '../../components/single-choice.component/single-choice.component';
+import CheckBoxInput from '../../components/input-checkbox.component/input-checkbox.component'
+import SearchInput from '../../components/input-search.component/input-search.component'
+import SingleChoice from '../../components/single-choice.component/single-choice.component';
 import PostItem from '../../components/post-item.component/post-item.component';
 
-export class Posts extends React.Component {
+class Posts extends React.Component {
 
     constructor(props){
         super(props);
@@ -143,3 +143,4 @@ export class Posts extends React.Component {
  
 }
 
+export default Posts;

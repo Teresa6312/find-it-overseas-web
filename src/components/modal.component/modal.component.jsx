@@ -1,4 +1,5 @@
 import React from 'react'
+import SignInAndSignUp from '../sign-in-and-sign-up.component/sign-in-and-sign-up.componunt';
 
 class Modal extends React.Component {
     constructor(props){
@@ -22,19 +23,7 @@ class Modal extends React.Component {
                     <div className="modal-content-title">
                     {this.props.title}
                     </div>
-
-                    {this.props.content}
-                    <div className="modal-content-buttons">
-                        <button className="modal-content-buttons__button" onClick={this.closeModal}> close </button>
-                        {
-                            this.props.button ?
-                            <button className="modal-content-buttons__button" onClick={this.props.handelChange}> 
-                                {this.props.button} 
-                            </button>
-                            : 
-                            null
-                        }
-                    </div>
+                    <SignInAndSignUp/>
                 </div>
             </div>    
         )
