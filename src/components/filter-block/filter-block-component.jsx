@@ -1,6 +1,6 @@
 import React from 'react';
 
-export class FilterBlock extends React.Component {
+class FilterBlock extends React.Component {
 
     constructor(props){
         super(props);
@@ -28,3 +28,5 @@ export class FilterBlock extends React.Component {
 
 
 }
+
+export default FilterBlock;

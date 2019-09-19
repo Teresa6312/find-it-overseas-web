@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const SearchInput = ({name, className, placeholder, handleChange}) =>{
+const SearchInput = ({name, className, placeholder, handleChange}) =>{
     return(
             <input 
                 type="search" 
@@ -11,3 +11,5 @@ export const SearchInput = ({name, className, placeholder, handleChange}) =>{
                 onChange={handleChange}/>
     )
 }
+
+export default SearchInput;
