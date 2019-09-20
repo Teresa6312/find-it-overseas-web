@@ -13,12 +13,12 @@
 @import './components/sign-in-and-sign-up.component/sign-in-and-sign-up.style.scss';
 @import './components/form-button.component/form-button.style.scss';
 @import './components/input-text.component/input-text.style.scss';
-
+@import './components/message-bar.component/message-bar.scss';
 
 
 /* Use the variables */
 body {
-  color: $seagreen;
+  color: $teal;
   font-size: $smallsize;
   font-family: arial,sans-serif;
   margin: 0;

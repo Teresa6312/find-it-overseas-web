@@ -14,7 +14,6 @@
       background-color: #fefefe;
       margin: 10% auto; /* 15% from the top and centered */
       border: 2px solid $lightgrey;
-      width: 80%; /* Could be more or less, depending on screen size */
 
       &-close-x{
         color: red;
@@ -43,4 +42,13 @@
       }
     }
   }
-  
+
+  .small{
+    width:50%;
+  }
+  .middle{
+    width:75%;
+  }
+  .large{
+    width:90%;
+  }

@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom'
 import logo from '../../logo.png'
 import Modal from '../modal.component/modal.component'
 import SignInAndSignUp from '../sign-in-and-sign-up.component/sign-in-and-sign-up.componunt';
-
 import {auth} from '../../firebase/firebase.utils'
 
 class Header extends React.Component{
@@ -34,15 +33,17 @@ class Header extends React.Component{
                     <Modal 
                         onClose={this.showLogInModal}
                         show={this.state.loginModalIsShow}
-                        title="log in"
-                        button="log in"
-                        content="please log in"
+                        title="FIND it OVERSEAS"
+                        width="small"
                     ><SignInAndSignUp/></Modal>
                 }
                 {
                     this.props.currentUser? 
                     <div className="header-main-menu">
                         <Link className="header-main-menu-item" to='/posts/'>Posts</Link>
+                        <div className="header-main-menu-item">
+                            {this.props.currentUser.displayName}
+                        </div>
                         <div className="header-main-menu-item" onClick = {() =>{
                                 auth.signOut();
                             }}>

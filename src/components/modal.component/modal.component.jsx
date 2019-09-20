@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 class Modal extends React.Component {
     
     onClose = e => {
-        this.props.onClose && this.props.onClose(e);
+        // this.props.onClose && this.props.onClose(e);
+        this.props.onClose(e);
       };
     componentWillUnmount(e){
         this.onClose(e);
@@ -17,7 +18,7 @@ class Modal extends React.Component {
             <div 
                 className="modal"
                 >
-                <div className="modal-content">
+                <div className={`modal-content ${this.props.width}`}>
                 <div className="modal-content-close-x" onClick={this.onClose} >&times;</div>
                     <div className="modal-content-title">
                     {this.props.title}

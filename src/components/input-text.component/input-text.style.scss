@@ -13,7 +13,7 @@
     background: none;
     background-color: white;
     color: black;
-    padding: $minisize;
+    padding: $minisize $minisize 0.5*$minisize $minisize;
     font-size: $smallsize;
     display: block;
     width: 100%;
@@ -47,5 +47,12 @@
     &.shrink {
       @include shrinkLabel();
     }
+  }
+  &-required-icon{
+    color:red;
+    right: $minisize;
+    top: 0.7*$smallsize;
+    position: absolute;
+    font-size: 1.3*$smallsize;
   }
 }

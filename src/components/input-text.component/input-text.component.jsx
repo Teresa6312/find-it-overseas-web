@@ -12,6 +12,11 @@ const TextInput = ({ handleChange, label, ...otherProps }) => (
           {label}
         </label>
       ) : null}
+      {
+        otherProps.required ?
+        <div className="input-text-required-icon">*</div>
+        :null 
+      }
     </div>
   );
   

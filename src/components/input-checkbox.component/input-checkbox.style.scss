@@ -1,7 +1,7 @@
 .checkbox-block{
     &__input{
-        width: $middlesize;
-        height: $middlesize;
+        width: 0.8*$middlesize;
+        height: 0.8*$middlesize;
         vertical-align: middle;
         padding-right: $minisize;
     }
