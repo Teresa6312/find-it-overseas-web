@@ -2,7 +2,7 @@ import React from 'react';
 
 import TextInput from '../input-text.component/input-text.component';
 import FormButton from '../form-button.component/form-button.component';
-
+import {signInWithGoogle} from '../../firebase/firebase.utils'
 
 class SignInAndSignUp extends React.Component {
   constructor(props) {
@@ -48,7 +48,7 @@ class SignInAndSignUp extends React.Component {
           />
           <FormButton type='submit'> Sign in </FormButton>
           <FormButton type='button'> Sign Up </FormButton>
-          <FormButton type='button'> Sign Up via Google </FormButton>
+          <FormButton type='button' onClick={signInWithGoogle}> Sign Up via Google </FormButton>
         </form>
       </div>
     );

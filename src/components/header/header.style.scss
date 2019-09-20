@@ -9,7 +9,7 @@
         margin-top:$minisize;
     }
 
-    &-main-menu__span{
+    &-main-menu{
         display: inline;
         text-align: right;
         position:absolute;                  
@@ -18,6 +18,7 @@
         cursor: pointer;
     }
     &-main-menu-item{
+        display: inline;
         padding: $minisize;
     }
 }
