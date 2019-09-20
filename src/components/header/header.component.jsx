@@ -1,7 +1,11 @@
 import React from 'react'
-import logo from '../../logo.png'
 import {Link} from 'react-router-dom'
+
+import logo from '../../logo.png'
 import Modal from '../modal.component/modal.component'
+import SignInAndSignUp from '../sign-in-and-sign-up.component/sign-in-and-sign-up.componunt';
+
+import {auth} from '../../firebase/firebase.utils'
 
 class Header extends React.Component{
     constructor(props){
@@ -11,39 +15,47 @@ class Header extends React.Component{
         }
     }
 
-    logInOnClick = () => {
-        this.setState({loginModalIsShow:true});
-        console.log("click");
-    }
+    showLogInModal = e => {
+        this.setState({
+            loginModalIsShow: !this.state.loginModalIsShow
+        });
+      };
 
     render(){
-        const {loginModalIsShow} = this.state;
         return (
             <header className="header">
                 <Link to="/">
                     <img src={logo} className="header-logo__img" alt="logo" />
                 </Link>
                 {
-                    this.props.isLoggedIn===false ? 
+                    this.props.currentUser ? 
+                    null
+                    :
                     <Modal 
-                        show={loginModalIsShow}
+                        onClose={this.showLogInModal}
+                        show={this.state.loginModalIsShow}
                         title="log in"
                         button="log in"
                         content="please log in"
-                    />
-                    :
-                    null
+                    ><SignInAndSignUp/></Modal>
                 }
                 {
-                    this.props.isLoggedIn? 
-                    <div className="header-main-menu__span">
-                        <a href="#" className="header-main-menu-item">Posts</a>
+                    this.props.currentUser? 
+                    <div className="header-main-menu">
+                        <Link className="header-main-menu-item" to='/posts/'>Posts</Link>
+                        <div className="header-main-menu-item" onClick = {() =>{
+                                auth.signOut();
+                            }}>
+                            Sign out
+                        </div>
                     </div>
                     :
-                    <div className="header-main-menu__span">
+                    <div className="header-main-menu">
                         <div 
                             className="header-main-menu-item" 
-                            onClick={this.logInOnClick}
+                            onClick={e => {
+                                this.showLogInModal(e);
+                              }}
                             >
                             Log in / Sign Up
                         </div>
