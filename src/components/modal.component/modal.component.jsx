@@ -1,34 +1,37 @@
 import React from 'react'
-import SignInAndSignUp from '../sign-in-and-sign-up.component/sign-in-and-sign-up.componunt';
+import PropTypes from "prop-types";
 
 class Modal extends React.Component {
-    constructor(props){
-        super(props);
-        this.state={
-            show:true
-        }
-    }
-    closeModal = () =>{
-        this.setState({show:false});
-        window.location.reload();
+    
+    onClose = e => {
+        this.props.onClose && this.props.onClose(e);
+      };
+    componentWillUnmount(e){
+        this.onClose(e);
     }
     render(){
+        if(!this.props.show){
+            return null;
+        }
         return (
             <div 
                 className="modal"
-                style={{display: this.props.show&&this.state.show? "block":"none"}}
                 >
                 <div className="modal-content">
-                <div className="modal-content-close-x" onClick={this.closeModal}>&times;</div>
+                <div className="modal-content-close-x" onClick={this.onClose} >&times;</div>
                     <div className="modal-content-title">
                     {this.props.title}
                     </div>
-                    <SignInAndSignUp/>
+                    {this.props.children}
                 </div>
             </div>    
         )
     }
 };
   
+Modal.propTypes = {
+    onClose: PropTypes.func.isRequired,
+    show: PropTypes.bool.isRequired
+  };
 
 export default Modal
