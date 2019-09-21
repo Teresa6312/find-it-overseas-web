@@ -2,10 +2,12 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import logo from '../../logo.png'
-import Modal from '../modal.component/modal.component'
 import SignInAndSignUp from '../sign-in-and-sign-up.component/sign-in-and-sign-up.componunt';
 import {auth} from '../../firebase/firebase.utils'
+
+import logo from '../../logo.png'
+import Modal from '../modal.component/modal.component'
+import OpenPostsIcon from '../open-posts-icon.component/open-posts-icon.component'
 
 class Header extends React.Component{
     constructor(props){
@@ -33,24 +35,11 @@ class Header extends React.Component{
                     <img src={logo} className="header-logo__img" alt="logo" />
                 </Link>
                 {
-                    currentUser ? 
-                    null
-                    :
-                    <Modal 
-                        onClose={this.showLogInModal}
-                        show={loginModalIsShow}
-                        title="FIND it OVERSEAS"
-                        width="small"
-                    >
-                    <SignInAndSignUp/>
-                    </Modal>
-                }
-                {
-                    this.props.currentUser? 
+                    currentUser? 
                     <div className="header-main-menu">
                         <Link className="header-main-menu-item" to='/posts/'>Posts</Link>
                         <div className="header-main-menu-item">
-                            {this.props.currentUser.displayName}
+                            {currentUser.displayName}
                         </div>
                         <div className="header-main-menu-item" onClick = {() =>{
                                 this.setState({
@@ -60,9 +49,21 @@ class Header extends React.Component{
                             }}>
                             Sign out
                         </div>
+                        <div className="header-main-menu-item">
+                            <OpenPostsIcon number={5}/>
+                        </div>
+                        
                     </div>
                     :
                     <div className="header-main-menu">
+                        <Modal 
+                            onClose={this.showLogInModal}
+                            show={loginModalIsShow}
+                            title="FIND it OVERSEAS"
+                            width="small"
+                        >
+                        <SignInAndSignUp/>
+                        </Modal>                                                                                                                        
                         <div 
                             className="header-main-menu-item" 
                             onClick={e => {
@@ -72,8 +73,8 @@ class Header extends React.Component{
                             Log in / Sign Up
                         </div>
                     </div>
-                }                
-                <hr className="header__hr"/>
+                }
+                
             </header>
         )
     }

@@ -1,0 +1,36 @@
+.open-posts-dropdown {
+    text-align: left;
+    position: absolute;
+    width: 10*$supersize;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 $minisize $smallsize 0 rgba(0, 0, 0, 0.2), 0 $smallsize $middlesize 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
+    margin: $bigsize 0 0 0;
+    top: 0;
+    right: $smallsize;
+    z-index: 5;
+    color:$teal;
+
+    &-items {
+      max-height: 7*$supersize;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    &-item{
+      padding: $minisize $smallsize;
+      &:hover{
+        background-color:$gold;
+      }
+    }
+    &-link{
+      color: $seagreen;
+      background-color: $lightgrey;
+      padding: $minisize;
+      &:hover{
+        background-color:$gold;
+      }
+    }
+  }
+  
