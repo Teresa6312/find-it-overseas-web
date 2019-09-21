@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
 
 import logo from '../../logo.png'
 import Modal from '../modal.component/modal.component'
@@ -79,4 +80,8 @@ class Header extends React.Component{
 
 }
 
-export default Header
+const mapStatToProps = state => ({
+    currentUser: state.user.currentUser
+})
+
+export default connect(mapStatToProps)(Header)
