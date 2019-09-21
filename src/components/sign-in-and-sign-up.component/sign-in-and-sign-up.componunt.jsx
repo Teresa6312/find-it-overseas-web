@@ -26,43 +26,67 @@ class SignInAndSignUp extends React.Component {
 
   handleSubmit = async event => {
     event.preventDefault();
-    const {register, email, password, confirmPassword, displayName, firstname, lastname, country, language, phoneNumber} = this.state;
+    const {register} = this.state;
     if(register){
-        if(password!==confirmPassword){
-          return
+      const { displayName, email, password, confirmPassword, firstname, lastname, country, language, phoneNumber } = this.state;
+      if (password !== confirmPassword) {
+        alert("passwords don't match");
+        return;
+      }
+  
+      try {
+        const { user } = await auth.createUserWithEmailAndPassword(
+          email,
+          password
+        );
+        await createOrGetUser(user, { displayName,firstname, lastname, country, language, phoneNumber});
+  
+        this.setState({
+          email: '',
+          password: '',
+          confirmPassword:'',
+          displayName:'',
+          firstname:'',
+          lastname:'',
+          language:'',
+          country:'',
+          phoneNumber:'',
+          register: false,
+          message:{},
+        });
+      } catch (error) {
+        console.log(error);
+        let messageText;
+        if(error.code==="auth/email-already-in-use"){
+          messageText = "The email address is already in use by another account.";
         }else{
-          try{
-            const user = await auth.createUserWithEmailAndPassword(email, password)
-            await createOrGetUser(user, {displayName,firstname, lastname, country, language,phoneNumber})
-          }catch(e){
-            console.log(e);
-            let messageText;
-            // if(e.code==="auth/email-already-in-use"){
-            //   messageText = "The email address is already in use by another account.";
-            // }else{
-            //   messageText = e.message;
-            // }
-            this.setState({
-              message:{
-                type:"error",
-                text:messageText
-              }
-            })
-          }
+          messageText = error.message;
         }
+        this.setState({
+          message:{
+            type:"error",
+            text:messageText
+          }
+        })
+      }
     }else{
+      const {email, password} = this.state;
       try{
         const user = await auth.signInWithEmailAndPassword(email, password)
-        console.log(user);
         await createOrGetUser(user);
       }catch(e){
         console.log(e);
         let messageText;
-        if(e.code==="auth/user-not-found"){
-          messageText = "The user with this email was not exsit";
-        }else{
-          messageText = e.message;
-        }
+        switch(e.code) {
+          case "auth/user-not-found":
+            messageText = "The user with this email was not exsit!";
+            break;
+          case "auth/wrong-password":
+            messageText = "Invalid password!";
+            break;
+          default:
+            messageText = e.message;
+          }
         this.setState({
           message:{
             type:"error",
@@ -159,7 +183,7 @@ class SignInAndSignUp extends React.Component {
             />  
             <TextInput
               name='phoneNumber'
-              type='phone'
+              type='text'
               value={phoneNumber}
               handleChange={this.textInputHandleChange}
               label='phone number'
