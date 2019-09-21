@@ -23,10 +23,18 @@ export const createOrGetUser = async (userAuth, additionalData) =>{
         const {displayName, email, phoneNumber} = userAuth;
         const {providerId} = userAuth.providerData[0];
         const createdAt = new Date();
+        console.log(additionalData);
         try{
-            await userRef.set({
-                displayName, email, phoneNumber, createdAt, providerId, ...additionalData
-            })
+            if(additionalData.displayName){
+                await userRef.set({
+                    email, phoneNumber, createdAt, providerId, ...additionalData
+                })
+            }else{
+                await userRef.set({
+                    displayName, email, phoneNumber, createdAt, providerId, ...additionalData
+                })
+            }
+            
         }catch(e){
             console.log('error in creating user',e.message)
         }

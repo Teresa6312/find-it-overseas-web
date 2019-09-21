@@ -18,23 +18,36 @@ class SignInAndSignUp extends React.Component {
       lastname:'',
       language:'',
       country:'',
-      phone:'',
+      phoneNumber:'',
       register: false,
+      message:{},
     };
   }
 
   handleSubmit = async event => {
     event.preventDefault();
-    const {register, email, password, confirmPassword, displayName, firstname, lastname, country, language, phone} = this.state;
+    const {register, email, password, confirmPassword, displayName, firstname, lastname, country, language, phoneNumber} = this.state;
     if(register){
         if(password!==confirmPassword){
           return
         }else{
           try{
             const user = await auth.createUserWithEmailAndPassword(email, password)
-            await createOrGetUser(user, {displayName,firstname, lastname, country, language,phone})
+            await createOrGetUser(user, {displayName,firstname, lastname, country, language,phoneNumber})
           }catch(e){
             console.log(e);
+            let messageText;
+            // if(e.code==="auth/email-already-in-use"){
+            //   messageText = "The email address is already in use by another account.";
+            // }else{
+            //   messageText = e.message;
+            // }
+            this.setState({
+              message:{
+                type:"error",
+                text:messageText
+              }
+            })
           }
         }
     }else{
@@ -44,6 +57,18 @@ class SignInAndSignUp extends React.Component {
         await createOrGetUser(user);
       }catch(e){
         console.log(e);
+        let messageText;
+        if(e.code==="auth/user-not-found"){
+          messageText = "The user with this email was not exsit";
+        }else{
+          messageText = e.message;
+        }
+        this.setState({
+          message:{
+            type:"error",
+            text:messageText
+          }
+        })
       }
     }
   };
@@ -60,7 +85,7 @@ class SignInAndSignUp extends React.Component {
   }
 
   render() {
-    const {register, email, password, confirmPassword, displayName, firstname, lastname, country, language, phone} = this.state;
+    const {register, email, message, password, confirmPassword, displayName, firstname, lastname, country, language, phoneNumber} = this.state;
     return (
       <div className='sign-in-or-sign-up'>
         {
@@ -69,7 +94,11 @@ class SignInAndSignUp extends React.Component {
           :
           null
         }
-        
+        {
+          message?
+            <MassageBar type={message.type}>{message.text}</MassageBar>
+            : null
+        }
         <form onSubmit={this.handleSubmit}>
           <TextInput
             name='email'
@@ -129,9 +158,9 @@ class SignInAndSignUp extends React.Component {
               required
             />  
             <TextInput
-              name='phone'
+              name='phoneNumber'
               type='phone'
-              value={phone}
+              value={phoneNumber}
               handleChange={this.textInputHandleChange}
               label='phone number'
               required

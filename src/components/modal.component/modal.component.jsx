@@ -7,6 +7,7 @@ class Modal extends React.Component {
         // this.props.onClose && this.props.onClose(e);
         this.props.onClose(e);
       };
+
     componentWillUnmount(e){
         this.onClose(e);
     }

@@ -23,7 +23,6 @@ class App extends React.Component {
   componentDidMount(){
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth=>{
       if(userAuth){
-        console.log(userAuth)
         const userRef = await createOrGetUser(userAuth);
         // snapShot return many data that from firebase but not contain all from our database in firebase
         // useing snapShot.data() will return all data from our database except id
@@ -46,10 +45,10 @@ class App extends React.Component {
   }
 
   render(){
-
+    const {currentUser} = this.state;
     return (
       <div className="App">
-        <Header currentUser = {this.state.currentUser}/>
+        <Header currentUser = {currentUser}/>
         <Switch>
           <Route exact path="/" component={HomePage}/>
           <Route exact path="/posts/" component={Posts}/>

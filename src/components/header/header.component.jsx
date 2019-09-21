@@ -20,22 +20,29 @@ class Header extends React.Component{
         });
       };
 
+
     render(){
+        const {loginModalIsShow} = this.state;
+        const {currentUser} = this.props
+        console.log("loginModalIsShow ->", this.state.loginModalIsShow)
+
         return (
             <header className="header">
                 <Link to="/">
                     <img src={logo} className="header-logo__img" alt="logo" />
                 </Link>
                 {
-                    this.props.currentUser ? 
+                    currentUser ? 
                     null
                     :
                     <Modal 
                         onClose={this.showLogInModal}
-                        show={this.state.loginModalIsShow}
+                        show={loginModalIsShow}
                         title="FIND it OVERSEAS"
                         width="small"
-                    ><SignInAndSignUp/></Modal>
+                    >
+                    <SignInAndSignUp/>
+                    </Modal>
                 }
                 {
                     this.props.currentUser? 
@@ -45,6 +52,9 @@ class Header extends React.Component{
                             {this.props.currentUser.displayName}
                         </div>
                         <div className="header-main-menu-item" onClick = {() =>{
+                                this.setState({
+                                    loginModalIsShow: false
+                                });
                                 auth.signOut();
                             }}>
                             Sign out
