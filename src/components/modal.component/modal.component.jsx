@@ -3,14 +3,11 @@ import PropTypes from "prop-types";
 
 class Modal extends React.Component {
     
-    onClose = e => {
+    onClose = () => {
         // this.props.onClose && this.props.onClose(e);
-        this.props.onClose(e);
+        this.props.onClose();
       };
 
-    componentWillUnmount(e){
-        this.onClose(e);
-    }
     render(){
         if(!this.props.show){
             return null;

@@ -1,0 +1,24 @@
+.user-menu-dropdown{
+    position: absolute;
+    width: 4*$supersize;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 $minisize $smallsize 0 rgba(0, 0, 0, 0.2), 0 $smallsize $middlesize 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
+    margin: $bigsize 0 0 0;
+    top: 0;
+    right: $smallsize;
+    z-index: 5;
+
+    &-item{
+      padding: $minisize $smallsize;
+      &:hover{
+        background-color:$teal;
+        color:white;
+        .user-menu-dropdown-item-link{
+            color:white;
+        }
+      }
+    }
+
+}

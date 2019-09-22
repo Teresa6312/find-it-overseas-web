@@ -12,7 +12,6 @@
 
     &-main-menu{
         display: inline;
-        text-align: right;
         position:absolute;                  
         bottom:$minisize;                          
         right:0; 
@@ -21,5 +20,16 @@
     &-main-menu-item{
         display: inline;
         padding: $minisize;
+        &.user-features{
+            display: none;
+        }
+        &:hover{
+            font-weight: bold;
+            color: $teal;
+        }
     }
+}
+
+.user-menu:hover .user-menu-dropdown{
+    display: flex;
 }
