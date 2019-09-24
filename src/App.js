@@ -24,12 +24,15 @@ class App extends React.Component {
         userRef.onSnapshot(snapShot=>{
           setCurrentUser({
             id:snapShot.id,
-            ...snapShot.data()
-          })
+            ...snapShot.data(),
+          });
+          
         })
+      }else{
+        setCurrentUser(userAuth);
       }
-      setCurrentUser(userAuth)
     });
+
   }
 
   componentWillUnmount(){
@@ -37,6 +40,7 @@ class App extends React.Component {
   }
 
   render(){
+
     return (
       <div className="App">
         <Header/>
@@ -53,7 +57,8 @@ class App extends React.Component {
 }
 
 const mapDispatchToProps = dispatch =>({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+  setCurrentUser: user => dispatch(setCurrentUser(user)),
 })
+
 
 export default connect(null,mapDispatchToProps)(App);

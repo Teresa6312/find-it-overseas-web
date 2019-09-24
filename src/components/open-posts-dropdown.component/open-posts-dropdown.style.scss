@@ -21,14 +21,7 @@
       padding: $minisize $smallsize;
       &:hover{
         background-color:$gold;
-      }
-    }
-    &-link{
-      color: $seagreen;
-      background-color: $lightgrey;
-      padding: $minisize;
-      &:hover{
-        background-color:$gold;
+        color:white;
       }
     }
   }

@@ -11,54 +11,58 @@ import UserMenuDropdrown from '../user-menu-dropdown.component/user-menu-dropdro
 
 import {showLogInModal, closeLogInModal} from '../../redux/log-in-modal/log-in-modal.action'; 
 
-const Header =({currentUser,logInModalIsShow, showLogInModal, closeLogInModal}) =>{
-    return (
-        <header className="header">
-            <Link to="/">
-                <img src={logo} className="header-logo__img" alt="logo" />
-            </Link>
-            {
-                currentUser? 
-                <div className="header-main-menu">
-                    <Link className="header-main-menu-item" to='/posts/'>Posts</Link>
-                    <div className="header-main-menu-item user-menu">
-                        {currentUser.displayName!=="" ? currentUser.displayName:"name"}
-                        <UserMenuDropdrown/>
-                    </div>
+// import { getUserOpeningPostsNumber } from '../../redux/user/user.action';
 
-                    <div className="header-main-menu-item">
-                        <OpenPostsIcon number={5}/>
+class Header extends React.Component{
+
+    render(){
+        const { currentUser, logInModalIsShow,  showLogInModal,  closeLogInModal} = this.props;
+        return (
+            <div className="header">
+                <Link to="/">
+                    <img src={logo} className="header-logo__img" alt="logo" />
+                </Link>
+                {
+                    currentUser? 
+                    <div className="header-main-menu">
+                        <Link className="header-main-menu-item" to='/posts/'>Posts</Link>
+                        <div className="header-main-menu-item user-menu">
+                            {currentUser.displayName!=="" ? currentUser.displayName:"name"}
+                            <UserMenuDropdrown/>
+                        </div>
+
+                        <div className="header-main-menu-item">
+                            <OpenPostsIcon/>
+                        </div>
+                        
                     </div>
-                    
-                </div>
-                :
-                <div className="header-main-menu">
-                    <Modal 
-                        onClose={closeLogInModal}
-                        show={logInModalIsShow}
-                        title="FIND it OVERSEAS"
-                        width="small"
-                    >
-                    <SignInAndSignUp/>
-                    </Modal>                                                                                                                        
-                    <div 
-                        className="header-main-menu-item" 
-                        onClick={showLogInModal}
+                    :
+                    <div className="header-main-menu">
+                        <Modal 
+                            onClose={closeLogInModal}
+                            show={logInModalIsShow}
+                            title="FIND it OVERSEAS"
+                            width="small"
                         >
-                        Log in / Sign Up
+                        <SignInAndSignUp/>
+                        </Modal>                                                                                                                        
+                        <div 
+                            className="header-main-menu-item" 
+                            onClick={showLogInModal}
+                            >
+                            Log in / Sign Up
+                        </div>
                     </div>
-                </div>
-            }
-            
-        </header>
-    )
-
-
+                }
+                
+            </div>
+    )}
+    
 }
 
 const mapDispatchToProps = dispatch =>({
     closeLogInModal: () => dispatch(closeLogInModal()),
-    showLogInModal: () => dispatch(showLogInModal())
+    showLogInModal: () => dispatch(showLogInModal()),
   })
 
 const mapStateToProps = state => ({

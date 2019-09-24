@@ -1,82 +1,36 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-const posts = [
-    {
-        type:'post',
-        title:"hello post",
-        id:1
-    },
-    {
-        type:'service',
-        title:'hello service',
-        id:2
-    },
-    {
-        type:"product",
-        title:"hello product",
-        id:3
-    },
-    {
-        type:"supplement",
-        title:"hello supplement",
-        id:4
-    },
-    {
-        type:'post',
-        title:"hello post",
-        id:5
-    },
-    {
-        type:'service',
-        title:'hello service',
-        id:6
-    },
-    {
-        type:"product",
-        title:"hello product",
-        id:7
-    },
-    {
-        type:"supplement",
-        title:"hello supplement",
-        id:8
-    },
-    {
-        type:'post',
-        title:"hello post",
-        id:9
-    },
-    {
-        type:'service',
-        title:'hello service',
-        id:10
-    },
-    {
-        type:"product",
-        title:"hello product",
-        id:11
-    },
-    {
-        type:"supplement",
-        title:"hello supplement",
-        id:12
-    }
-];
+import {connect} from 'react-redux';
+import { firestore } from '../../firebase/firebase.utils';
 
-const OpenPostsDropdown = () =>{
+const OpenPostsDropdown = ({currentUser}) =>{
+    console.log(currentUser);
+    if(!currentUser) return null
+    const snap = firestore.collection(`users/${currentUser.id}/posts`)
+        .where('open', '==', true)
+        .get().then(snapshot=>{
+            snapshot.forEach(( doc =>
+                console.log(doc.id)
+                )
+        )});
     return(
         <div className="open-posts-dropdown">
-            <Link to='my-account/openning-posts' className="open-posts-dropdown-link">view all of my opening posts</Link>
             <div className="open-posts-dropdown-items">
-                {posts.map((post)=>(
-                    <div key={post.id} className="open-posts-dropdown-item">
-                        <div className="open-posts-dropdown-item-title">
-                            {post.title}
-                        </div>
-                    </div>
-                ))}  
+                { currentUser.displayName
+                    // userPosts.data.map((post)=>(
+                    // <div key={post.id} className="open-posts-dropdown-item">
+                    //     <div className="open-posts-dropdown-item-title">
+                    //         {post.title}
+                    //     </div>
+                    // </div>
+                    // ))
+                }  
             </div>
         </div>
     )
 }
-export default OpenPostsDropdown;
+const mapStateToProps = (state) => ({
+    currentUser: state.user.currentUser
+})
+
+
+export default connect(mapStateToProps)(OpenPostsDropdown)

@@ -5,5 +5,5 @@ import logInModalReducer from './log-in-modal/log-in-modal-reducer';
 
 export default combineReducers({
     user: userReducer,
-    logInModal: logInModalReducer
+    logInModal: logInModalReducer,
 });
