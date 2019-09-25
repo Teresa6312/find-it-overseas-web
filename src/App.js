@@ -9,13 +9,15 @@ import Posts from './pages/posts/posts.component';
 
 import {auth, createOrGetUser} from './firebase/firebase.utils';
 import {setCurrentUser} from './redux/user/user.action'
+import { setUserPosts } from './redux/user-posts/user-posts.action';
+import { firestore } from './firebase/firebase.utils';
 
 class App extends React.Component {
 
   unsubscribeFromAuth = null;
 
   componentDidMount(){
-    const {setCurrentUser} = this.props;
+    const {setCurrentUser, setUserPosts} = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth=>{
       if(userAuth){
         const userRef = await createOrGetUser(userAuth);
@@ -26,10 +28,21 @@ class App extends React.Component {
             id:snapShot.id,
             ...snapShot.data(),
           });
-          
-        })
+        let list = [];
+        firestore.collection(`users/${snapShot.id}/posts`)
+        .where('open', '==', true)
+        .get().then(snapshot=>{
+            snapshot.forEach(( post =>
+                list = [...list, {id:post.id, ...post.data()}]
+                ));
+        }).then(()=>{
+            setUserPosts(list);
+        });
+      });
+
       }else{
         setCurrentUser(userAuth);
+        setUserPosts([]);
       }
     });
 
@@ -40,7 +53,6 @@ class App extends React.Component {
   }
 
   render(){
-
     return (
       <div className="App">
         <Header/>
@@ -58,7 +70,11 @@ class App extends React.Component {
 
 const mapDispatchToProps = dispatch =>({
   setCurrentUser: user => dispatch(setCurrentUser(user)),
+  setUserPosts: user => dispatch(setUserPosts(user)),
 })
 
+const mapStateToProps = (state) => ({
+  currentUser:state.user.currentUser
+})
 
-export default connect(null,mapDispatchToProps)(App);
+export default connect(mapStateToProps,mapDispatchToProps)(App);

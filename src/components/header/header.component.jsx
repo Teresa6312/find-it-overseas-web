@@ -27,13 +27,11 @@ class Header extends React.Component{
                     <div className="header-main-menu">
                         <Link className="header-main-menu-item" to='/posts/'>Posts</Link>
                         <div className="header-main-menu-item user-menu">
-                            {currentUser.displayName!=="" ? currentUser.displayName:"name"}
+                            {currentUser.displayName ? currentUser.displayName:"name"}
                             <UserMenuDropdrown/>
                         </div>
 
-                        <div className="header-main-menu-item">
-                            <OpenPostsIcon/>
-                        </div>
+                        <OpenPostsIcon/>
                         
                     </div>
                     :
@@ -55,7 +53,9 @@ class Header extends React.Component{
                     </div>
                 }
                 
+            <hr/>                
             </div>
+            
     )}
     
 }

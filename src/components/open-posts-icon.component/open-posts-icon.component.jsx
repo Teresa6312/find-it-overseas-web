@@ -4,13 +4,14 @@ import {Link} from 'react-router-dom';
 
 import OpenPostsDropdown from '../open-posts-dropdown.component/open-posts-dropdown-component'
 
-const OpenPostsIcon = ({currentUser}) =>{
+const OpenPostsIcon = ({userPosts}) =>{
+    if(userPosts.length===0) return null;
+
     return (
-    <div className='open-posts-icon'>
+    <div className='header-main-menu-item open-posts-icon'>
         <Link to='my-account/openning-posts'>
             <div className='open-posts-icon-num' title="click to view all you opening request posts">
-                {currentUser.displayName}
-                {console.log(currentUser)}
+                {userPosts.length}
             </div>
         </Link>
         <OpenPostsDropdown/>  
@@ -18,7 +19,7 @@ const OpenPostsIcon = ({currentUser}) =>{
 )}
 
 const mapStateToProps = (state) => ({
-    currentUser: state.user.currentUser,
+    userPosts:state.userPosts.userPosts
 })
 
-export default connect(mapStateToProps, )(OpenPostsIcon)
+export default connect(mapStateToProps)(OpenPostsIcon)

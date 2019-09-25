@@ -18,8 +18,14 @@
         cursor: pointer;
     }
     &-main-menu-item{
+        min-width: 165px;
+        padding: 0 $minisize;
+        text-transform: uppercase;
+        font-weight: bolder;
+        cursor: pointer;
+        margin-right: $minisize;
+        vertical-align: bottom;
         display: inline;
-        padding: $minisize;
         &.user-features{
             display: none;
         }
@@ -28,6 +34,10 @@
             color: $teal;
         }
     }
+}
+
+.user-menu{
+    display: relative;
 }
 
 .user-menu:hover .user-menu-dropdown{

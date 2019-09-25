@@ -2,13 +2,15 @@
     background-color: $gold;
     display: -webkit-inline-box;
     border-radius: 50%;
-    vertical-align: bottom;
-    
+    display: relative;
+    min-width: 0;
+    padding: 0;
+
     &-num{
         min-height: $minisize+$smallsize;
         min-width: $minisize+$smallsize;
         border-radius: 50%;
-        margin: 0.5*$minisize;
+        margin:  0.5*$minisize;
         padding: 0.5*$minisize;
         font-size: 0.8*$smallsize;
         text-align: center;
