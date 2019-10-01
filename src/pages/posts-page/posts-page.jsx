@@ -4,7 +4,7 @@ import SearchInput from '../../components/input-search.component/input-search.co
 import SingleChoice from '../../components/single-choice.component/single-choice.component';
 import PostItem from '../../components/post-item.component/post-item.component';
 
-class Posts extends React.Component {
+class PostsPage extends React.Component {
 
     constructor(props){
         super(props);
@@ -143,4 +143,4 @@ class Posts extends React.Component {
  
 }
 
-export default Posts;
+export default PostsPage;

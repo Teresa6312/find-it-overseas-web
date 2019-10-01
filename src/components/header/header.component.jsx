@@ -5,6 +5,8 @@ import {connect} from 'react-redux'
 import SignInAndSignUp from '../sign-in-and-sign-up.component/sign-in-and-sign-up.componunt';
 
 import logo from '../../logo.png'
+import links from './links';
+
 import Modal from '../modal.component/modal.component'
 import OpenPostsIcon from '../open-posts-icon.component/open-posts-icon.component'
 import UserMenuDropdrown from '../user-menu-dropdown.component/user-menu-dropdrown.component';
@@ -25,7 +27,9 @@ class Header extends React.Component{
                 {
                     currentUser? 
                     <div className="header-main-menu">
-                        <Link className="header-main-menu-item" to='/posts/'>Posts</Link>
+                        {links.map(link=>(
+                            <Link key={link.id} className="header-main-menu-item" to={link.url}>{link.title}</Link>
+                        ))}
                         <div className="header-main-menu-item user-menu">
                             {currentUser.displayName ? currentUser.displayName:"name"}
                             <UserMenuDropdrown/>
@@ -36,6 +40,9 @@ class Header extends React.Component{
                     </div>
                     :
                     <div className="header-main-menu">
+                        {links.map(link=>(
+                            <Link key={link.id} className="header-main-menu-item" to={link.url}>{link.title}</Link>
+                        ))}
                         <Modal 
                             onClose={closeLogInModal}
                             show={logInModalIsShow}
@@ -53,7 +60,6 @@ class Header extends React.Component{
                     </div>
                 }
                 
-            <hr/>                
             </div>
             
     )}

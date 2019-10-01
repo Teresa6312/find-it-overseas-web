@@ -2,15 +2,15 @@ import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux'
 
-import HomePage from './pages/home-page/home-page';
 import PostDetail from './pages/post-detail/post-detail';
 import Header from'./components/header/header.component';
-import Posts from './pages/posts/posts.component';
+import PostsPage from './pages/posts-page/posts-page';
 
 import {auth, createOrGetUser} from './firebase/firebase.utils';
 import {setCurrentUser} from './redux/user/user.action'
 import { setUserPosts } from './redux/user-posts/user-posts.action';
 import { firestore } from './firebase/firebase.utils';
+import AboutPage from './pages/about-page/about-page';
 
 class App extends React.Component {
 
@@ -57,8 +57,9 @@ class App extends React.Component {
       <div className="App">
         <Header/>
         <Switch>
-          <Route exact path="/" component={HomePage}/>
-          <Route exact path="/posts/" component={Posts}/>
+          <Route exact path="/" component={PostsPage}/>
+          <Route exact path="/posts/" component={PostsPage}/>
+          <Route exact path="/about/" component={AboutPage}/>
           <Route path="/posts/:postID" component={PostDetail}/>
         </Switch>
         read=> https://stackoverflow.com/questions/51116747/react-router-v4-link-vs-redirect-vs-history

@@ -7,7 +7,6 @@ class Modal extends React.Component {
         // this.props.onClose && this.props.onClose(e);
         this.props.onClose();
       };
-
     render(){
         if(!this.props.show){
             return null;
