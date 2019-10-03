@@ -18,7 +18,7 @@ class AboutPage extends React.Component{
                     <br/>
                     Let 
                     <span className="about-page-content-header__span"> FIND it OVERSEAS </span>
-                    hlep you!
+                    helps you!
                 </div>
                 <div className="about-page-content-introduction"> If you heard about
                     <span className ="about-page-content-introduction-six-degrees__span"

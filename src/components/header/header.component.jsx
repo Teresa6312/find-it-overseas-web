@@ -12,15 +12,23 @@ import OpenPostsIcon from '../open-posts-icon.component/open-posts-icon.componen
 import UserMenuDropdrown from '../user-menu-dropdown.component/user-menu-dropdrown.component';
 
 import {showLogInModal, closeLogInModal} from '../../redux/log-in-modal/log-in-modal.action'; 
+import MessageBar from '../message-bar.component/message-bar.component';
 
 // import { getUserOpeningPostsNumber } from '../../redux/user/user.action';
 
 class Header extends React.Component{
-
     render(){
-        const { currentUser, logInModalIsShow,  showLogInModal,  closeLogInModal} = this.props;
+        const { message, currentUser, logInModalIsShow,  showLogInModal,  closeLogInModal} = this.props;
         return (
             <div className="header">
+                {
+                    message?
+                    <MessageBar
+                        type={message.type}>
+                        {message.messageText}
+                    </MessageBar>
+                    :null
+                }
                 <Link to="/">
                     <img src={logo} className="header-logo__img" alt="logo" />
                 </Link>
@@ -74,6 +82,7 @@ const mapDispatchToProps = dispatch =>({
 const mapStateToProps = state => ({
     currentUser: state.user.currentUser,
     logInModalIsShow: state.logInModal.logInModalIsShow,
+    message:state.message.message,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

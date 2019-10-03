@@ -6,10 +6,9 @@ import PostDetail from './pages/post-detail/post-detail';
 import Header from'./components/header/header.component';
 import PostsPage from './pages/posts-page/posts-page';
 
-import {auth, createOrGetUser} from './firebase/firebase.utils';
+import {auth, createOrGetUser, firestore} from './firebase/firebase.utils';
 import {setCurrentUser} from './redux/user/user.action'
 import { setUserPosts } from './redux/user-posts/user-posts.action';
-import { firestore } from './firebase/firebase.utils';
 import AboutPage from './pages/about-page/about-page';
 
 class App extends React.Component {
@@ -29,8 +28,8 @@ class App extends React.Component {
             ...snapShot.data(),
           });
         let list = [];
-        firestore.collection(`users/${snapShot.id}/posts`)
-        .where('open', '==', true)
+        firestore.collection("posts")
+        .where('createdBy', '==', snapShot.id)
         .get().then(snapshot=>{
             snapshot.forEach(( post =>
                 list = [...list, {id:post.id, ...post.data()}]
@@ -60,9 +59,8 @@ class App extends React.Component {
           <Route exact path="/" component={PostsPage}/>
           <Route exact path="/posts/" component={PostsPage}/>
           <Route exact path="/about/" component={AboutPage}/>
-          <Route path="/posts/:postID" component={PostDetail}/>
+          <Route path="/posts/postID=:postID" component={PostDetail}/>
         </Switch>
-        read=> https://stackoverflow.com/questions/51116747/react-router-v4-link-vs-redirect-vs-history
       </div>
     );
   }
