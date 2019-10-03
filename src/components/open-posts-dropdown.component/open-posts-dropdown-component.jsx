@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import PostsItemSummary from '../posts-item-summary.component/posts-item-summary.component';
 
 const OpenPostsDropdown = ({userPosts}) =>{
 
@@ -8,11 +9,10 @@ const OpenPostsDropdown = ({userPosts}) =>{
             <div className="open-posts-dropdown-items">
                 { 
                     userPosts.map((post)=>(
-                    <div key={post.id} className="open-posts-dropdown-item">
-                        <div className="open-posts-dropdown-item-title">
-                            {post.title}
-                        </div>
-                    </div>
+                        <PostsItemSummary 
+                            key={post.id}
+                            post={post} 
+                            addClassName="open-posts-dropdown-item"/>
                     ))
                 }
             </div>

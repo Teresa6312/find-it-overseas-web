@@ -29,7 +29,8 @@ class App extends React.Component {
           });
         let list = [];
         firestore.collection("posts")
-        .where('createdBy', '==', snapShot.id)
+        .where('createdBy', '==', userRef)
+        .where('open', '==', true)
         .get().then(snapshot=>{
             snapshot.forEach(( post =>
                 list = [...list, {id:post.id, ...post.data()}]

@@ -25,7 +25,7 @@ const PostsDetail =({viewHistory, setMessage, addToViewHistory, match, history})
                 }else{
                     addToViewHistory({
                         id: snapshot.id,
-                        ...post
+                        title:post.title
                     })
                 }
             }
@@ -35,7 +35,7 @@ const PostsDetail =({viewHistory, setMessage, addToViewHistory, match, history})
     const post  = viewHistory.find( e =>{
         if(e.id===match.params.postID){
             return e;
-        }
+        }return null;
     });
     return (
         <div>

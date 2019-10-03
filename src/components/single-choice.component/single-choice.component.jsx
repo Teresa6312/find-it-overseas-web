@@ -5,17 +5,16 @@ const SingleChoice = ({list, name, selectedOption,handleChange}) =>{
     return(
         <div className = {`single-choice-block__div ${name}-block__div`} key={name}>
             {list.map((option, index)=>(
-                <RadioInput 
+                <RadioInput
                     key={index}
+                    id={`${name}_${index}`}
                     name={name}
-                    index={index}
-                    option={option}
+                    value={option}
                     selectedOption = {selectedOption}
                     handleChange = {handleChange}/>
             ))}
         </div>
     )
-
 }
 
 export default SingleChoice;

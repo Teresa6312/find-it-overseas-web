@@ -1,0 +1,17 @@
+.view-history{
+    &-header{
+        margin-top: $bigsize;
+        margin-bottom: $minisize;
+        font-weight: bold;
+        &__span{
+            float: right;
+        }
+    }
+    &-posts{
+        background-color: $lightgrey;
+        padding: $minisize;
+        border-radius: $minisize;
+        max-height: 7*$supersize;
+        overflow-y: auto;
+    }
+}
