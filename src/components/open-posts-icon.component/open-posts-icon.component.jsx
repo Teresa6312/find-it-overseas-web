@@ -1,6 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import {createStructuredSelector} from 'reselect';
+
+import {selectUserPosts} from '../../redux/user/user.selectors';
 
 import OpenPostsDropdown from '../open-posts-dropdown.component/open-posts-dropdown-component'
 
@@ -18,8 +21,9 @@ const OpenPostsIcon = ({userPosts}) =>{
     </div>
 )}
 
-const mapStateToProps = (state) => ({
-    userPosts:state.userPosts.userPosts
+const mapStateToProps = createStructuredSelector({
+    userPosts:selectUserPosts
 })
+
 
 export default connect(mapStateToProps)(OpenPostsIcon)

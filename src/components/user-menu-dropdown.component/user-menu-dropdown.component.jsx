@@ -4,8 +4,8 @@ import {Link} from 'react-router-dom'
 
 import links from './links';
 
-import {auth} from '../../firebase/firebase.utils'
-import { closeLogInModal } from "../../redux/log-in-modal/log-in-modal.action";
+import {auth} from '../../firebase/firebase.utils';
+import { closeLogInModal } from "../../redux/modal/modal.action";
 
 
 const UserMenuDropdrown = ({closeLogInModal}) =>{
@@ -32,9 +32,5 @@ const UserMenuDropdrown = ({closeLogInModal}) =>{
 const mapDispatchToProps = dispatch =>({
     closeLogInModal: () => dispatch(closeLogInModal())
   })
-
-// const mapStateToProps = state =>({
-//     currentUser: state.user.currentUser
-// });
 
 export default connect(null, mapDispatchToProps)(UserMenuDropdrown);

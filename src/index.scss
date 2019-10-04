@@ -13,7 +13,7 @@
 @import './components/open-posts-icon.component/open-posts-icon.style.scss';
 @import './components/open-posts-dropdown.component/open-posts-dropdown.style.scss';
 @import './components/user-menu-dropdown.component/user-menu-dropdown.style.scss';
-@import './components/view-history.component/view-history.style.scss';
+@import './components/viewed-posts-history.component/viewed-posts-history.style.scss';
 @import './components/posts-display-item.component/posts-display-item.style.scss';
 @import './components/posts-item-summary.component/posts-item-summary.style.scss';
 
@@ -39,7 +39,8 @@ a{
 }
 
 hr{
-  border: 2px solid $gold;
+  border: none;
+  border-bottom: 2px solid $gold;
   margin: 5px;
 }
 

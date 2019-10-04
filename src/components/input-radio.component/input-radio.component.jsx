@@ -6,7 +6,7 @@ const RadioInput = ({id, name, addClassName,
                         isChecked=false, selectedOption, ...otherProps
                     }) =>{
     return(
-        <div key={id?id:`${name}_key`} className={`radio-block ${name}-radio__div`}>
+        <div className={`radio-block ${addClassName?addClassName:name}`}>
             <input 
                 id={id?id:`${name}_id`} 
                 type='radio' 
@@ -17,7 +17,7 @@ const RadioInput = ({id, name, addClassName,
                 onChange={handleChange}
                 {...otherProps}
             />
-            <label htmlFor={name} className={`radio-block__label ${name}-radio__label`}>
+            <label htmlFor={name} className={`radio-block__label ${addClassName?addClassName:name}-radio__label`}>
                 {labelText?labelText:value}
             </label>
         </div>
@@ -26,7 +26,6 @@ const RadioInput = ({id, name, addClassName,
 
 RadioInput.propTypes = {
     name: PropTypes.string.isRequired,
-    handleChange: PropTypes.func.isRequired
 };
 
 export default RadioInput;

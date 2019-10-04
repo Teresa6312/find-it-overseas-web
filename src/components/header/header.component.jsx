@@ -9,9 +9,9 @@ import links from './links';
 
 import Modal from '../modal.component/modal.component'
 import OpenPostsIcon from '../open-posts-icon.component/open-posts-icon.component'
-import UserMenuDropdrown from '../user-menu-dropdown.component/user-menu-dropdrown.component';
+import UserMenuDropdrown from '../user-menu-dropdown.component/user-menu-dropdown.component';
 
-import {showLogInModal, closeLogInModal} from '../../redux/log-in-modal/log-in-modal.action'; 
+import {showLogInModal, closeLogInModal} from '../../redux/modal/modal.action'; 
 import MessageBar from '../message-bar.component/message-bar.component';
 import { clearMessage } from '../../redux/message/message.action';
 
@@ -87,7 +87,7 @@ const mapDispatchToProps = dispatch =>({
 
 const mapStateToProps = state => ({
     currentUser: state.user.currentUser,
-    logInModalIsShow: state.logInModal.logInModalIsShow,
+    logInModalIsShow: state.modal.logInModalIsShow,
     message:state.message.message,
 })
 

@@ -2,6 +2,7 @@
     position: absolute;
     display: flex;
     width: 10*$supersize;
+    max-height: 7*$supersize;
     flex-direction: column;
     box-shadow: $boxshadow;
     background-color: white;
@@ -9,16 +10,10 @@
     right: $smallsize;
     z-index: 5;
     color:$teal;
-
     visibility: hidden;
     transition: visibility 0.3s;
+    overflow-y: auto;
 
-    &-items {
-      max-height: 7*$supersize;
-      display: flex;
-      flex-direction: column;
-      overflow-y: auto;
-    }
     &-item{
       padding: $minisize $smallsize;
       &:hover{

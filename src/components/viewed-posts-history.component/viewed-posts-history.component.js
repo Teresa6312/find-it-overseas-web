@@ -1,10 +1,13 @@
 import React from 'react';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
 import PostsItemSummary from '../posts-item-summary.component/posts-item-summary.component';
-import { clearViewHistory } from '../../redux/view-history/view-history.action';
+import { clearViewHistory } from '../../redux/history/history.action';
+import { selectViewedPosts } from '../../redux/history/history.selectors';
 
-const ViewHistory = ({viewHistory, clearViewHistory}) =>{
+const ViewedPostsHistory = ({viewedPosts, clearViewHistory}) =>{
+    if(!viewedPosts||viewedPosts.length===0) return null;
     return(
         <div className="view-history">
             <div className="view-history-header">
@@ -18,8 +21,8 @@ const ViewHistory = ({viewHistory, clearViewHistory}) =>{
             </div>
             <div className="view-history-posts">
                 {
-                    viewHistory?
-                    viewHistory.map(post=>
+                    viewedPosts?
+                    viewedPosts.map(post=>
                         <PostsItemSummary
                             key={post.id}
                             post={post}
@@ -32,12 +35,12 @@ const ViewHistory = ({viewHistory, clearViewHistory}) =>{
 }
 
 
-const mapStatetoProps = ({postViewHistory}) =>({
-    viewHistory: postViewHistory.viewHistory
+const mapStatetoProps = createStructuredSelector({
+    viewedPosts: selectViewedPosts
 })
 
 const mapDispatchToProps = dispatch =>({
     clearViewHistory:() => dispatch(clearViewHistory()),
 })
 
-export default connect(mapStatetoProps,mapDispatchToProps)(ViewHistory);
+export default connect(mapStatetoProps,mapDispatchToProps)(ViewedPostsHistory);

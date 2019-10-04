@@ -1,4 +1,5 @@
 import React from 'react';
+import {FaGooglePlusG} from 'react-icons/fa';
 
 import TextInput from '../input-text.component/input-text.component';
 import FormButton from '../form-button.component/form-button.component';
@@ -129,7 +130,7 @@ class SignInAndSignUp extends React.Component {
             type='email'
             handleChange={this.textInputHandleChange}
             value={email}
-            label='email'
+            labelText='email'
             required
           />
           <TextInput
@@ -137,7 +138,7 @@ class SignInAndSignUp extends React.Component {
             type='password'
             value={password}
             handleChange={this.textInputHandleChange}
-            label='password'
+            labelText='password'
             required
           />
           {register?
@@ -148,7 +149,7 @@ class SignInAndSignUp extends React.Component {
               type='password'
               value={confirmPassword}
               handleChange={this.textInputHandleChange}
-              label='confirm password'
+              labelText='confirm password'
               required
             />
             <TextInput
@@ -156,7 +157,7 @@ class SignInAndSignUp extends React.Component {
               type='text'
               value={displayName}
               handleChange={this.textInputHandleChange}
-              label='username'
+              labelText='username'
               required
             />            
             <TextInput
@@ -164,21 +165,21 @@ class SignInAndSignUp extends React.Component {
               type='text'
               value={firstname}
               handleChange={this.textInputHandleChange}
-              label='first name'
+              labelText='first name'
             />
             <TextInput
               name='lastname'
               type='text'
               value={lastname}
               handleChange={this.textInputHandleChange}
-              label='first name'         
+              labelText='first name'         
             />    
             <TextInput
               name='country'
               type='text'
               value={country}
               handleChange={this.textInputHandleChange}
-              label='country'
+              labelText='country'
               required
             />  
             <TextInput
@@ -186,7 +187,7 @@ class SignInAndSignUp extends React.Component {
               type='text'
               value={phoneNumber}
               handleChange={this.textInputHandleChange}
-              label='phone number'
+              labelText='phone number'
               required
             />   
             <TextInput
@@ -194,7 +195,7 @@ class SignInAndSignUp extends React.Component {
               type='text'
               value={language}
               handleChange={this.textInputHandleChange}
-              label='language'
+              labelText='language'
               required
             />                     
            </div> 
@@ -205,10 +206,14 @@ class SignInAndSignUp extends React.Component {
           
           <FormButton type='submit'> {register?"Sign up":"Sign in "}</FormButton>
           <FormButton type='button' onClick={this.startRegister}> {register?"cancel":"sign up"}</FormButton>
-          
-          <FormButton type='button' onClick={signInWithGoogle}> Sign Up via Google </FormButton>
-          
         </form>
+        <div className="sign-in-or-sign-up-third-party-log-in-break">
+          <label>Or</label>
+          <hr/>
+        </div>
+        <div className="sign-in-or-sign-up-third-party-icons">
+          <div className="sign-in-or-sign-up-third-party-icons-google" onClick={signInWithGoogle}><FaGooglePlusG/></div>
+        </div>
       </div>
     );
   }

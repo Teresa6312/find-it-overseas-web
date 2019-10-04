@@ -7,7 +7,7 @@ import CheckBoxInput from '../../components/input-checkbox.component/input-check
 import SearchInput from '../../components/input-search.component/input-search.component'
 import SingleChoice from '../../components/single-choice.component/single-choice.component';
 import PostsDisplayItem from '../../components/posts-display-item.component/posts-diaplay-item.component';
-import ViewHistory from '../../components/view-history.component/view-history.component';
+import ViewedPostsHistory from '../../components/viewed-posts-history.component/viewed-posts-history.component';
 
 class PostsPage extends React.Component {
 
@@ -41,8 +41,8 @@ class PostsPage extends React.Component {
 
         
     render(){
-        const PostBlockDisplayClassName = this.state.displayAsList? "post-block-display-list": "post-block-display-card";
-        const itemContainerClassName = this.state.displayAsList? "post-block-display-list-container": "post-block-display-card-container";
+        const PostBlockDisplayClassName = this.state.displayAsList? "posts-page-display-list": "posts-page-display-card";
+        const itemContainerClassName = this.state.displayAsList? "posts-page-display-list-container": "posts-page-display-card-container";
 
         const {posts, searchField, selectedPostType} = this.state;
         const filterPost = posts.filter(post=>{
@@ -61,43 +61,39 @@ class PostsPage extends React.Component {
             postTypeChoices.push(postTypes[key]);
         }
         return(
-            <div className='post-block'> 
+            <div className='posts-page'> 
                 <SearchInput
-                    name="post-block-search"
-                    addClassName="post-block-search__input"
+                    name="posts-page-search"
                     placeholder="search posts" 
                     handleChange={e=>{this.setState({searchField:e.target.value},()=>{
                         console.log("----------");
                     })}}/>
                 <SingleChoice
-                    name="post-block-post-types"
-                    classNames="post-block-post-types"
+                    name="posts-page-post-types"
                     list={postTypeChoices}
                     selectedOption = {this.state.selectedPostType}
                     handleChange = {this.selectPostType}
                 />
                 <CheckBoxInput 
-                    id="post-block-display-option"
-                    name="post-block-display-option"
-                    addClassName = "post-block-display-option"
+                    name="posts-page-display-option"
                     isChecked={this.state.displayAsList}
                     handleChange={e=>{this.setState({displayAsList:e.target.checked})}}
                     labelText="display as list"
                     />
-                <div className = {`post-block-display ${PostBlockDisplayClassName}`}>
+                <div className = {`posts-page-display ${PostBlockDisplayClassName}`}>
                     {filterPost.length>0? 
                         filterPost.map((post)=>(
                             <PostsDisplayItem 
                                 key={post.id}
-                                itemContainerClassName={`post-block-display-item-container ${itemContainerClassName}`}
+                                addClassName={itemContainerClassName}
                                 post={post}
                                 />
                         ))
                         :
-                        <div className={`post-block-display-item-container ${itemContainerClassName}`}> no search result</div>
+                        <div className={itemContainerClassName}> no search result</div>
                     }
                 </div>
-                <ViewHistory/>
+                <ViewedPostsHistory/>
             </div>
         );
     }

@@ -7,7 +7,7 @@ const CheckBoxInput = ({id, name, addClassName,
                             ...otherProps
                         }) =>{
     return(
-        <div key={id?id:`${name}_key`} className={`checkbox-block ${addClassName}`}>
+        <div className={`checkbox-block ${addClassName?addClassName:name}`}>
             <input type="checkbox" 
                 id = {id?id:`${name}_id`}
                 name = {name}
@@ -27,7 +27,6 @@ const CheckBoxInput = ({id, name, addClassName,
 
 CheckBoxInput.propTypes = {
     name: PropTypes.string.isRequired,
-    handleChange: PropTypes.func.isRequired
 };
 
 export default CheckBoxInput;

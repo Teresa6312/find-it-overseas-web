@@ -3,4 +3,30 @@
     margin: $smallsize auto;
     display: flex;
     flex-direction: column;
+
+    &-third-party-log-in-break{
+      position: relative;
+      background-color: white;
+      text-align: center;
+      z-index: 5;
+      margin-top: $smallsize;
+
+      & label{
+        background-color: white;
+        padding: 0 $minisize;
+      }
+      & hr{
+        position: inherit;
+        top:-$smallsize;
+        z-index: -1;
+      }
+    }
+
+    &-third-party-icons{
+      text-align: center;
+      font-size: $middlesize;
+      &-google{
+        color: red;
+      }
+    }
   }

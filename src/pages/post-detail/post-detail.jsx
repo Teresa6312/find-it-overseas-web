@@ -1,12 +1,15 @@
 import React from 'react';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
 import {firestore} from '../../firebase/firebase.utils';
 import {setMessage} from '../../redux/message/message.action';
-import {addToViewHistory} from '../../redux/view-history/view-history.action';
+import {viewPost} from '../../redux/history/history.action';
+import {selectCurrentUser} from '../../redux/user/user.selectors';
 import {verifyUser} from '../../code/permission';
+import { selectViewedPosts } from '../../redux/history/history.selectors';
 
-const PostsDetail =({viewHistory,currentUser, setMessage, addToViewHistory, match, history})=>{
+const PostsDetail =({viewedPosts,currentUser, setMessage, viewPost, match, history})=>{
     firestore.doc(`posts/${match.params.postID}`).onSnapshot(
         snapshot=>{
             if(!snapshot.exists){
@@ -18,7 +21,7 @@ const PostsDetail =({viewHistory,currentUser, setMessage, addToViewHistory, matc
             }else{
                 const post = snapshot.data();
                 if(post.open||verifyUser(currentUser.id)){
-                    addToViewHistory({
+                    viewPost({
                         id: snapshot.id,
                         title:post.title
                     })
@@ -33,7 +36,7 @@ const PostsDetail =({viewHistory,currentUser, setMessage, addToViewHistory, matc
 
         }
     )
-    const post  = viewHistory.find( e =>{
+    const post  = viewedPosts.find( e =>{
         if(e.id===match.params.postID){
             return e;
         }return null;
@@ -48,14 +51,15 @@ const PostsDetail =({viewHistory,currentUser, setMessage, addToViewHistory, matc
     )
 }
 
-const mapStateToProps = (state) =>({
-    viewHistory: state.postViewHistory.viewHistory,
-    currentUser: state.user.currentUser
-})
+const mapStateToProps = createStructuredSelector ({
+    currentUser: selectCurrentUser,
+    viewedPosts: selectViewedPosts
+  })
+  
 
 const mapDispatchToProps = dispatch =>({
     setMessage: (message) => dispatch(setMessage(message)),
-    addToViewHistory:(post) => dispatch(addToViewHistory(post)),
+    viewPost:(post) => dispatch(viewPost(post)),
   })
 
 

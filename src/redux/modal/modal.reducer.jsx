@@ -1,4 +1,4 @@
-import logInModalActionTypes from './log-in-modal-action-type';
+import modalActionTypes from './modal-action-type';
 
 const initial = {
     logInModalIsShow: false,
@@ -6,12 +6,12 @@ const initial = {
 
 const logInModalReducer = (state=initial, action) =>{
     switch(action.type){
-        case logInModalActionTypes.show :
+        case modalActionTypes.showLogInModal :
             return {
                 ...state,
                 logInModalIsShow: true
             }
-        case logInModalActionTypes.close :
+        case modalActionTypes.closeLogInModal :
             return {
                 ...state,
                 logInModalIsShow: false

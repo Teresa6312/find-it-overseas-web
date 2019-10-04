@@ -1,14 +1,16 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux'
+import {createStructuredSelector} from 'reselect';
+
+import {selectCurrentUser} from './redux/user/user.selectors';
 
 import PostDetail from './pages/post-detail/post-detail';
 import Header from'./components/header/header.component';
 import PostsPage from './pages/posts-page/posts-page';
 
 import {auth, createOrGetUser, firestore} from './firebase/firebase.utils';
-import {setCurrentUser} from './redux/user/user.action'
-import { setUserPosts } from './redux/user-posts/user-posts.action';
+import {setCurrentUser, setUserPosts} from './redux/user/user.actions'
 import AboutPage from './pages/about-page/about-page';
 
 class App extends React.Component {
@@ -29,12 +31,12 @@ class App extends React.Component {
           });
         let list = [];
         firestore.collection("posts")
-        .where('createdBy', '==', userRef)
-        .where('open', '==', true)
-        .get().then(snapshot=>{
-            snapshot.forEach(( post =>
-                list = [...list, {id:post.id, ...post.data()}]
-                ));
+          .where('createdBy', '==', userRef)
+          .where('open', '==', true)
+          .get().then(snapshot=>{
+              snapshot.forEach(( post =>
+                  list = [...list, {id:post.id, ...post.data()}]
+                  ));
         }).then(()=>{
             setUserPosts(list);
         });
@@ -70,11 +72,11 @@ class App extends React.Component {
 
 const mapDispatchToProps = dispatch =>({
   setCurrentUser: user => dispatch(setCurrentUser(user)),
-  setUserPosts: user => dispatch(setUserPosts(user)),
+  setUserPosts: posts => dispatch(setUserPosts(posts)),
 })
 
-const mapStateToProps = (state) => ({
-  currentUser:state.user.currentUser
+const mapStateToProps = createStructuredSelector ({
+  currentUser:selectCurrentUser 
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);
