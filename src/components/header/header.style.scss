@@ -41,5 +41,6 @@
 }
 
 .user-menu:hover .user-menu-dropdown{
-    display: flex;
+    visibility: visible;
+    transition: visibility 0s;
 }

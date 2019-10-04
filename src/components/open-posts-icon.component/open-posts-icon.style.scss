@@ -18,6 +18,7 @@
     }
     
     &:hover .open-posts-dropdown{
-        display: flex;
+        visibility: visible;
+        transition: visibility 0s;
     }
 }

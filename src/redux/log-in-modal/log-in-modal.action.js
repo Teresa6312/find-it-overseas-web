@@ -1,7 +1,9 @@
+import logInModalActionTypes from './log-in-modal-action-type';
+
 export const showLogInModal = () => ({
-    type: "show",
+    type: logInModalActionTypes.show,
 });
 
 export const closeLogInModal = () => ({
-    type: "close",
+    type: logInModalActionTypes.close,
 });

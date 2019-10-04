@@ -4,7 +4,15 @@
         margin-bottom: $minisize;
         font-weight: bold;
         &__span{
+            cursor: pointer;
+            font-style: italic;
             float: right;
+            padding: 0 $minisize;
+            color: $seagreen;
+            &:hover{
+                text-decoration:underline;
+                color: $teal;
+            }
         }
     }
     &-posts{

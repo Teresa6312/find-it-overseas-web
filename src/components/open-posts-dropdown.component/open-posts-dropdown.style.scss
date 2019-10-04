@@ -1,15 +1,17 @@
 .open-posts-dropdown {
     position: absolute;
+    display: flex;
     width: 10*$supersize;
-    display: none;
     flex-direction: column;
-    box-shadow: 0 $minisize $smallsize 0 rgba(0, 0, 0, 0.2), 0 $smallsize $middlesize 0 rgba(0, 0, 0, 0.19);
+    box-shadow: $boxshadow;
     background-color: white;
-    margin: 0;
-    top: 0.9*$bigsize;
+    margin-top: $minisize;
     right: $smallsize;
     z-index: 5;
     color:$teal;
+
+    visibility: hidden;
+    transition: visibility 0.3s;
 
     &-items {
       max-height: 7*$supersize;

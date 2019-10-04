@@ -45,7 +45,6 @@ class PostsPage extends React.Component {
         const itemContainerClassName = this.state.displayAsList? "post-block-display-list-container": "post-block-display-card-container";
 
         const {posts, searchField, selectedPostType} = this.state;
-        console.log(posts);
         const filterPost = posts.filter(post=>{
             if(selectedPostType==="all"){
                 return post.title.toLowerCase().includes(searchField.toLowerCase()) 

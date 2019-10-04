@@ -1,4 +1,4 @@
-import userPostActionTypes from './user-post-action-types';
+import userPostsActionTypes from './user-post-action-types';
 
 const initial = {
     userPosts:[]
@@ -6,7 +6,7 @@ const initial = {
 
 const userPostsReducer = (state=initial, action) =>{
     switch(action.type){
-        case userPostActionTypes.setUserPosts:
+        case userPostsActionTypes.set:
             return{
                 ...state,
                 userPosts:action.payload

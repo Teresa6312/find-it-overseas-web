@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux'
+
 import PostsItemSummary from '../posts-item-summary.component/posts-item-summary.component';
+import { clearViewHistory } from '../../redux/view-history/view-history.action';
 
 const ViewHistory = ({viewHistory, clearViewHistory}) =>{
     return(
@@ -9,6 +11,7 @@ const ViewHistory = ({viewHistory, clearViewHistory}) =>{
                 View History
                 <span 
                     className="view-history-header__span"
+                    onClick={()=>clearViewHistory()}
                     >
                     clear
                 </span>
@@ -33,8 +36,8 @@ const mapStatetoProps = ({postViewHistory}) =>({
     viewHistory: postViewHistory.viewHistory
 })
 
-// const mapDispatchToProps = dispatch =>({
-//     clearViewHistory:()=>dispatch(clearViewHistory())
-// })
+const mapDispatchToProps = dispatch =>({
+    clearViewHistory:() => dispatch(clearViewHistory()),
+})
 
-export default connect(mapStatetoProps,)(ViewHistory);
+export default connect(mapStatetoProps,mapDispatchToProps)(ViewHistory);

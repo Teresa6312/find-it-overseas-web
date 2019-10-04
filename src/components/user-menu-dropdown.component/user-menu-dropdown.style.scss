@@ -1,12 +1,15 @@
 .user-menu-dropdown{
     position: absolute;
     width: 4*$supersize;
-    display: none;
+    display: flex;
     flex-direction: column;
-    box-shadow: 0 $minisize $smallsize 0 rgba(0, 0, 0, 0.2), 0 $smallsize $middlesize 0 rgba(0, 0, 0, 0.19);
+    box-shadow: $boxshadow;
     background-color: white;
     right: $smallsize;
+    margin-top: $minisize;
     z-index: 5;
+    visibility: hidden;
+    transition: visibility 0.3s;
 
     &-item{
       padding: $minisize $smallsize;

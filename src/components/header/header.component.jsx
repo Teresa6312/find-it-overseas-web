@@ -13,12 +13,17 @@ import UserMenuDropdrown from '../user-menu-dropdown.component/user-menu-dropdro
 
 import {showLogInModal, closeLogInModal} from '../../redux/log-in-modal/log-in-modal.action'; 
 import MessageBar from '../message-bar.component/message-bar.component';
+import { clearMessage } from '../../redux/message/message.action';
 
 // import { getUserOpeningPostsNumber } from '../../redux/user/user.action';
 
 class Header extends React.Component{
+
     render(){
-        const { message, currentUser, logInModalIsShow,  showLogInModal,  closeLogInModal} = this.props;
+        const { message, clearMessage ,currentUser, logInModalIsShow,  showLogInModal,  closeLogInModal} = this.props;
+        if(message){
+            setTimeout(()=>clearMessage(), 2000);
+        }
         return (
             <div className="header">
                 {
@@ -77,6 +82,7 @@ class Header extends React.Component{
 const mapDispatchToProps = dispatch =>({
     closeLogInModal: () => dispatch(closeLogInModal()),
     showLogInModal: () => dispatch(showLogInModal()),
+    clearMessage:() => dispatch(clearMessage()),
   })
 
 const mapStateToProps = state => ({

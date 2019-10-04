@@ -6,3 +6,9 @@ export const setMessage =(message)=>{
         payload:message
     }
 }
+
+export const clearMessage =()=>{
+    return {
+        type:messageActionTypes.clear,
+    }
+}

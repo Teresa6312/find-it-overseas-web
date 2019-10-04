@@ -1,7 +1,6 @@
-const userPostActionTypes = {
-    setUserPosts: 'set_user_posts',
-    addPost:'add_post',
-    closePost: 'close_post',
+const userPostsActionTypes = {
+    set: 'set_user_posts',
+    update:'update_user_posts',
 }
 
-export default userPostActionTypes
+export default userPostsActionTypes

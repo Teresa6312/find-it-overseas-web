@@ -1,8 +1,8 @@
-import userPostActionTypes from './user-post-action-types';
+import userPostsActionTypes from './user-post-action-types';
 
-export const setUserPosts = (list) => {
+export const setUserPosts = (posts) => {
     return {
-        type: userPostActionTypes.setUserPosts,
-        payload: list
+        type: userPostsActionTypes.set,
+        payload: posts
     }
 }

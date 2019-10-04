@@ -47,6 +47,9 @@ button{
   padding: $minisize;
   font-size: $smallsize;
 }
+button:hover{
+  box-shadow: $boxshadow;
+}
 
 *{
   box-sizing: border-box;

@@ -10,6 +10,5 @@ export const addToViewHistory = (post) =>{
 export const clearViewHistory = () =>{
     return{
         type:viewHistoryActionType.clear,
-        payload:[]
     }
 };

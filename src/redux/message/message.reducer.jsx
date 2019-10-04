@@ -11,6 +11,11 @@ const messageReducer=(state=initial, action)=>{
                 ...state,
                 message:action.payload
             }
+        case messageActionTypes.clear:
+            return{
+                ...state,
+                message:null
+            }
         default:
             return state;
     }

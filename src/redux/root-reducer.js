@@ -2,8 +2,8 @@ import {combineReducers} from 'redux';
 import {persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import userReducer from './user/user-reducer';
-import logInModalReducer from './log-in-modal/log-in-modal-reducer';
+import userReducer from './user/user.reducer';
+import logInModalReducer from './log-in-modal/log-in-modal.reducer';
 import userPostsReducer from './user-posts/user-posts.reducer';
 import viewHistoryReducer from './view-history/view-history.reducer';
 import messageReducer from './message/message.reducer';
@@ -12,7 +12,7 @@ import messageReducer from './message/message.reducer';
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist:['postViewHistory']
+    whitelist:['postViewHistory', 'message']
 }
 
 const rootReducer = combineReducers({

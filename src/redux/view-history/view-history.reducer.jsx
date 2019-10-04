@@ -22,7 +22,7 @@ const viewHistoryReducer = (state=initial, action) =>{
         case(viewHistoryActionType.clear):
             return{
                 ...state,
-                viewHistory:action.payload
+                viewHistory:[]
             }
         default:
             return state;
