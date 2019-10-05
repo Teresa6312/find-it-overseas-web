@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from "prop-types";
 import {MdClose} from 'react-icons/md';
+import Logo from '../logo.component/logo.component';
 
 class Modal extends React.Component {
     
@@ -17,10 +18,17 @@ class Modal extends React.Component {
                 className="modal"
                 >
                 <div className={`modal-content ${this.props.width}`}>
-                <div className="modal-content-close-x" onClick={this.onClose}><MdClose/></div>
+                    <div className="modal-content-close-x" onClick={this.onClose}><MdClose/></div>
                     <div className="modal-content-title">
-                    {this.props.title}
+                        {
+                            this.props.title ?
+                                this.props.title
+                                :
+                                <Logo className="logo-small"/>
+                        }                   
                     </div>
+
+                    
                     {this.props.children}
                 </div>
             </div>    

@@ -1,0 +1,127 @@
+$size1:1.3vw;
+$size3:3vw;
+
+.logo{
+    position: relative;
+    text-transform: uppercase;
+    font-style: italic;
+    color:$seagreen;
+    margin-bottom: $middlesize;
+    
+    &-find, &-verseas{
+        position: absolute;
+        font-size: $middlesize;
+        font-weight: bold;
+    }
+    &-find{
+        top:0.4*$middlesize;
+        left:2*$middlesize;
+    }
+    &-verseas{
+        top:1.3*$middlesize;
+        left:1.9*$middlesize;
+
+    }
+    &-it{
+        position: absolute;
+        text-transform: lowercase;
+        font-size:0.9*$middlesize;
+        top:0.8*$middlesize;
+        left:0.5*$middlesize;
+        font-family: 'lucida handwriting';
+        color:$gold;
+
+    }
+    &-o{
+        position: absolute;
+        font-size: 2.5*$middlesize;
+    }
+}
+
+.logo-small{
+    position: relative;
+    text-transform: uppercase;
+    font-style: italic;
+    margin-bottom: $size1;
+    
+    & .logo-find{
+        position: absolute;
+        font-size: $size1;
+        font-weight: bold;
+        top:0.4*$size1;
+        left:2*$size1;
+    }
+    & .logo-verseas{
+        position: absolute;
+        font-size: $size1;
+        font-weight: bold;
+        top:1.3*$size1;
+        left:1.9*$size1;
+
+    }
+    & .logo-it{
+        position: absolute;
+        text-transform: lowercase;
+        font-size:0.9*$size1;
+        top:0.8*$size1;
+        left:0.5*$size1;
+        font-family: 'lucida handwriting';
+        color:$gold;
+
+    }
+    & .logo-o{
+        position: absolute;
+        font-size: 2.5*$size1;
+        font-weight: 100;
+    }
+}
+
+.logo-large{
+    position: relative;
+    text-transform: uppercase;
+    font-style: italic;
+    margin-bottom: 1.5*$size3;
+    
+    & .logo-find{
+        position: absolute;
+        font-size: $size3;
+        font-weight: bold;
+        top:0.4*$size3;
+        left:2*$size3;
+    }
+    & .logo-verseas{
+        position: absolute;
+        font-size: $size3;
+        font-weight: bold;
+        top:1.3*$size3;
+        left:1.9*$size3;
+
+    }
+    & .logo-it{
+        position: absolute;
+        text-transform: lowercase;
+        font-size:0.9*$size3;
+        top:0.8*$size3;
+        left:0.5*$size3;
+        font-family: 'lucida handwriting';
+        color:$gold;
+
+    }
+    & .logo-o{
+        position: absolute;
+        font-size: 2.5*$size3;
+        font-weight: 100;
+    }
+}
+
+
+.gold{
+    color:$gold;
+    & .logo-it{
+        color:$seagreen;
+    }
+}
+
+.center{
+    left:40%;
+}

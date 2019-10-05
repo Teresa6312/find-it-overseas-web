@@ -1,0 +1,23 @@
+.user-posts-page{
+    margin: 1vw 10vw 1vw 10vw;
+    &-header{
+        font-size: 1.5*$smallsize;
+        font-weight: bold;
+        margin: $minisize 0;
+    }
+    &-display{
+        display: grid;
+        grid-gap: 10px;
+    }
+
+    &-display-card{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    }
+
+    &-display-option{
+        text-align: right;
+        padding: 10px 0;
+    }
+}
+

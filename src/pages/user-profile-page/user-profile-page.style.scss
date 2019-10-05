@@ -1,0 +1,8 @@
+.user-profile-page{
+    margin: 1vw 10vw 1vw 10vw;
+    &-header{
+        font-size: 1.5*$smallsize;
+        font-weight: bold;
+        margin: $minisize 0;
+    }
+}

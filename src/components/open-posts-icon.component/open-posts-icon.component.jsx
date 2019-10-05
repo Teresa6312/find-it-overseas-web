@@ -12,7 +12,7 @@ const OpenPostsIcon = ({userPosts}) =>{
 
     return (
     <div className='header-main-menu-item open-posts-icon'>
-        <Link to='my-account/openning-posts'>
+        <Link to='/my-account/post-history'>
             <div className='open-posts-icon-num' title="click to view all you opening request posts">
                 {userPosts.length}
             </div>

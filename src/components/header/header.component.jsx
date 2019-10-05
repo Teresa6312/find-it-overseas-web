@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
 import SignInAndSignUp from '../sign-in-and-sign-up.component/sign-in-and-sign-up.componunt';
 
@@ -14,6 +15,9 @@ import UserMenuDropdrown from '../user-menu-dropdown.component/user-menu-dropdow
 import {showLogInModal, closeLogInModal} from '../../redux/modal/modal.action'; 
 import MessageBar from '../message-bar.component/message-bar.component';
 import { clearMessage } from '../../redux/message/message.action';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+import {selectLogInModal} from '../../redux/modal/modal.selector';
+import {selectMessageText} from '../../redux/message/message.selector';
 
 // import { getUserOpeningPostsNumber } from '../../redux/user/user.action';
 
@@ -59,7 +63,6 @@ class Header extends React.Component{
                         <Modal 
                             onClose={closeLogInModal}
                             show={logInModalIsShow}
-                            title="FIND it OVERSEAS"
                             width="small"
                         >
                         <SignInAndSignUp/>
@@ -85,10 +88,10 @@ const mapDispatchToProps = dispatch =>({
     clearMessage:() => dispatch(clearMessage()),
   })
 
-const mapStateToProps = state => ({
-    currentUser: state.user.currentUser,
-    logInModalIsShow: state.modal.logInModalIsShow,
-    message:state.message.message,
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+    logInModalIsShow: selectLogInModal,
+    message: selectMessageText
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

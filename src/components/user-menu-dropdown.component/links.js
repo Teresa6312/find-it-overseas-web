@@ -3,12 +3,12 @@ const links =
     {   
         id:1,
         title:"profile",
-        url:"/profile/",
+        url:"/my-account/profile",
     },
     {   
         id:2,
         title:"post history",
-        url:"/post-history/",
+        url:"/my-account/post-history",
     }
 ]
 

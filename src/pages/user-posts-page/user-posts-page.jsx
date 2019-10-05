@@ -1,15 +1,18 @@
 import React from 'react';
+import {connect} from 'react-redux'
 
-import {firestore} from '../../firebase/firebase.utils';
 import {postTypes} from '../../assets/data/data';
 
 import CheckBoxInput from '../../components/input-checkbox.component/input-checkbox.component'
 import SearchInput from '../../components/input-search.component/input-search.component'
 import SingleChoice from '../../components/single-choice.component/single-choice.component';
-import PostsDisplay from '../../components/posts-display.component/posts-display.component';
 import ViewedPostsHistory from '../../components/viewed-posts-history.component/viewed-posts-history.component';
+import PostsDisplay from '../../components/posts-display.component/posts-display.component';
+import { createStructuredSelector } from 'reselect';
+import { selectUserPosts, selectCurrentUser } from '../../redux/user/user.selectors';
+import { showLogInModal } from '../../redux/modal/modal.action';
 
-class PostsPage extends React.Component {
+class UserPostsPage extends React.Component {
 
     constructor(props){
         super(props);
@@ -19,21 +22,16 @@ class PostsPage extends React.Component {
             searchField: '',
             selectedTabs : ['red', 'car','chair'],
             pageNum: 1,
-            posts:[]
         }
     }
     
     componentDidMount(){
-        firestore.collection("posts")
-        .where('open', '==', true)
-        .get().then(snapshot=>{
-            snapshot.forEach(post =>{
-                this.setState(prevState=>{
-                    return {posts:[...prevState.posts,{id:post.id, ...post.data()}]}
-                })
-            });
-        });
+        const {currentUser, showLogInModal} = this.props;
+        if(!currentUser){
+            showLogInModal()
+        }
     }
+
     selectPostType = (e=>
         this.setState({
           selectedPostType: e.currentTarget.value
@@ -41,9 +39,10 @@ class PostsPage extends React.Component {
 
         
     render(){
-        const PostBlockDisplayClassName = this.state.displayAsList? "posts-page-display-list": "posts-page-display-card";
-        const {posts, searchField, selectedPostType} = this.state;
-        const filterPost = posts.filter(post=>{
+        const PostBlockDisplayClassName = this.state.displayAsList? "user-posts-page-display-list": "user-posts-page-display-card";
+        const {userPosts} = this.props;
+        const {searchField, selectedPostType} = this.state;
+        const filterPost = userPosts.filter(post=>{
             if(selectedPostType==="all"){
                 return post.title.toLowerCase().includes(searchField.toLowerCase()) 
             }else{
@@ -59,26 +58,30 @@ class PostsPage extends React.Component {
             postTypeChoices.push(postTypes[key]);
         }
         return(
-            <div className='posts-page'> 
+            <div className='user-posts-page'> 
+                <div className="user-posts-page-header">
+                    Request Post History
+                </div>
+
                 <SearchInput
-                    name="posts-page-search"
+                    name="user-posts-page-search"
                     placeholder="search posts" 
                     handleChange={e=>{this.setState({searchField:e.target.value},()=>{
                         console.log("----------");
                     })}}/>
                 <SingleChoice
-                    name="posts-page-post-types"
+                    name="user-posts-page-post-types"
                     list={postTypeChoices}
                     selectedOption = {this.state.selectedPostType}
                     handleChange = {this.selectPostType}
                 />
                 <CheckBoxInput 
-                    name="posts-page-display-option"
+                    name="user-posts-page-display-option"
                     isChecked={this.state.displayAsList}
                     handleChange={e=>{this.setState({displayAsList:e.target.checked})}}
                     labelText="display as list"
                     />
-                    <div className = {`posts-page-display`}>
+                <div className = {`user-posts-page-display`}>
                     {filterPost.length>0? 
                         <PostsDisplay
                             posts={filterPost}
@@ -94,4 +97,14 @@ class PostsPage extends React.Component {
     }
 }
 
-export default PostsPage;
+const mapDispatchToProps = dispatch =>({
+    showLogInModal: () =>dispatch(showLogInModal())
+})
+  
+
+const mapStateToProps = createStructuredSelector({
+    userPosts: selectUserPosts,
+    currentUser: selectCurrentUser
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(UserPostsPage);

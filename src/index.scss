@@ -16,13 +16,14 @@
 @import './components/viewed-posts-history.component/viewed-posts-history.style.scss';
 @import './components/posts-display-item.component/posts-display-item.style.scss';
 @import './components/posts-item-summary.component/posts-item-summary.style.scss';
-
+@import './components/logo.component/logo.style.scss';
 
 @import './pages/home-page/home-page.style.scss';
-@import './pages/post-detail/post-detail.style.scss';
+@import './pages/post-detail-page/post-detail-page.style.scss';
 @import './pages/posts-page/posts-page.style.scss';
 @import './pages/about-page/about-page.style.scss';
-
+@import './pages/user-posts-page/user-posts-page.style.scss';
+@import './pages/user-profile-page/user-profile-page.style.scss';
 
 /* Use the variables */
 body {

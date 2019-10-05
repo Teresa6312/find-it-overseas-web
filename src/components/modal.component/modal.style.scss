@@ -12,14 +12,17 @@
 
     &-content{
       background-color: #fefefe;
-      margin: 10% auto; /* 15% from the top and centered */
+      margin: 5% auto; /* 15% from the top and centered */
       border: 2px solid $lightgrey;
+      position: relative;
 
       &-close-x{
+        position: absolute;
+        z-index: 5;
+        top:0;
+        right: 0;
         color: red;
-        float: right;
         font-size: $middlesize;
-        margin-right: $minisize;
         &:hover, &:focus{
           color: black;
           text-decoration: none;

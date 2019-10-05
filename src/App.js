@@ -5,13 +5,16 @@ import {createStructuredSelector} from 'reselect';
 
 import {selectCurrentUser} from './redux/user/user.selectors';
 
-import PostDetail from './pages/post-detail/post-detail';
+import PostDetail from './pages/post-detail-page/post-detail-page';
 import Header from'./components/header/header.component';
 import PostsPage from './pages/posts-page/posts-page';
 
 import {auth, createOrGetUser, firestore} from './firebase/firebase.utils';
 import {setCurrentUser, setUserPosts} from './redux/user/user.actions'
+
 import AboutPage from './pages/about-page/about-page';
+import userPostsPage from './pages/user-posts-page/user-posts-page';
+import UserProfilePage from './pages/user-profile-page/user-profile-page';
 
 class App extends React.Component {
 
@@ -60,8 +63,9 @@ class App extends React.Component {
         <Header/>
         <Switch>
           <Route exact path="/" component={PostsPage}/>
-          <Route exact path="/posts/" component={PostsPage}/>
-          <Route exact path="/about/" component={AboutPage}/>
+          <Route exact path="/about" component={AboutPage}/>
+          <Route exact path="/my-account/post-history" component={userPostsPage}/>
+          <Route exact path="/my-account/profile" component={UserProfilePage}/>
           <Route path="/posts/postID=:postID" component={PostDetail}/>
         </Switch>
       </div>
