@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from "prop-types";
+import {MdClose} from 'react-icons/md';
+import Logo from '../logo.component/logo.component';
 
 class Modal extends React.Component {
     
-    onClose = e => {
-        this.props.onClose && this.props.onClose(e);
+    onClose = () => {
+        // this.props.onClose && this.props.onClose(e);
+        this.props.onClose();
       };
-    componentWillUnmount(e){
-        this.onClose(e);
-    }
     render(){
         if(!this.props.show){
             return null;
@@ -17,11 +17,18 @@ class Modal extends React.Component {
             <div 
                 className="modal"
                 >
-                <div className="modal-content">
-                <div className="modal-content-close-x" onClick={this.onClose} >&times;</div>
+                <div className={`modal-content ${this.props.width}`}>
+                    <div className="modal-content-close-x" onClick={this.onClose}><MdClose/></div>
                     <div className="modal-content-title">
-                    {this.props.title}
+                        {
+                            this.props.title ?
+                                this.props.title
+                                :
+                                <Logo className="logo-small"/>
+                        }                   
                     </div>
+
+                    
                     {this.props.children}
                 </div>
             </div>    

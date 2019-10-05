@@ -1,0 +1,25 @@
+.user-menu-dropdown{
+    position: absolute;
+    width: 4*$supersize;
+    display: flex;
+    flex-direction: column;
+    box-shadow: $boxshadow;
+    background-color: white;
+    right: $smallsize;
+    margin-top: $minisize;
+    z-index: 5;
+    visibility: hidden;
+    transition: visibility 0.3s;
+
+    &-item{
+      padding: $minisize $smallsize;
+      &:hover{
+        background-color:$teal;
+        color:white;
+        .user-menu-dropdown-item-link{
+            color:white;
+        }
+      }
+    }
+
+}

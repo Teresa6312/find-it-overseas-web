@@ -2,6 +2,7 @@
     // font-size: calc(10px + 2vmin);
     margin:0;
     position: relative;
+    color: $seagreen;
 
     &-logo__img{
         height: $bigsize;
@@ -11,14 +12,35 @@
 
     &-main-menu{
         display: inline;
-        text-align: right;
         position:absolute;                  
         bottom:$minisize;                          
         right:0; 
         cursor: pointer;
     }
     &-main-menu-item{
+        min-width: 165px;
+        padding: 0 $minisize;
+        text-transform: uppercase;
+        font-weight: bolder;
+        cursor: pointer;
+        margin-right: $minisize;
+        vertical-align: bottom;
         display: inline;
-        padding: $minisize;
+        &.user-features{
+            display: none;
+        }
+        &:hover{
+            font-weight: bold;
+            color: $teal;
+        }
     }
+}
+
+.user-menu{
+    display: relative;
+}
+
+.user-menu:hover .user-menu-dropdown{
+    visibility: visible;
+    transition: visibility 0s;
 }

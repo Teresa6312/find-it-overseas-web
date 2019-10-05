@@ -3,13 +3,6 @@ import {Link} from 'react-router-dom'
 
 
 class HomePage extends React.Component{
-    
-    constructor(){
-        super();
-        this.state = {
-
-        }
-    }
 
     render(){
         return(
@@ -19,7 +12,7 @@ class HomePage extends React.Component{
                     <br/>
                     Let 
                     <span className="home-page-content-header__span"> FIND it OVERSEAS </span>
-                    hlep you!
+                    helps you!
                 </div>
                 <div className="home-page-content-introduction"> If you heard about
                     <span className ="home-page-content-introduction-six-degrees__span"

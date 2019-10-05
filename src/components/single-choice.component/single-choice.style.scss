@@ -1,0 +1,7 @@
+.single-choice-block{
+    padding: $minisize 0;
+    &__radio_input{
+        display: inline;
+        padding-right: $minisize;
+    }
+}

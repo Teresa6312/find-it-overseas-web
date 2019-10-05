@@ -5,20 +5,29 @@
 @import './components/input-radio.component/input-radio.style.scss';
 @import './components/input-search.component/input-search.style.scss';
 @import './components/modal.component/modal.style.scss';
-@import './components/post-item.component/post-item.style.scss';
 @import './components/single-choice.component/single-choice.style.scss';
-@import './pages/home-page/home-page.style.scss';
-@import './pages/post-detail/post-detail.style.scss';
-@import './pages/posts/posts.style.scss';
 @import './components/sign-in-and-sign-up.component/sign-in-and-sign-up.style.scss';
 @import './components/form-button.component/form-button.style.scss';
 @import './components/input-text.component/input-text.style.scss';
+@import './components/message-bar.component/message-bar.scss';
+@import './components/open-posts-icon.component/open-posts-icon.style.scss';
+@import './components/open-posts-dropdown.component/open-posts-dropdown.style.scss';
+@import './components/user-menu-dropdown.component/user-menu-dropdown.style.scss';
+@import './components/viewed-posts-history.component/viewed-posts-history.style.scss';
+@import './components/posts-display-item.component/posts-display-item.style.scss';
+@import './components/posts-item-summary.component/posts-item-summary.style.scss';
+@import './components/logo.component/logo.style.scss';
 
-
+@import './pages/home-page/home-page.style.scss';
+@import './pages/post-detail-page/post-detail-page.style.scss';
+@import './pages/posts-page/posts-page.style.scss';
+@import './pages/about-page/about-page.style.scss';
+@import './pages/user-posts-page/user-posts-page.style.scss';
+@import './pages/user-profile-page/user-profile-page.style.scss';
 
 /* Use the variables */
 body {
-  color: $seagreen;
+  color: $teal;
   font-size: $smallsize;
   font-family: arial,sans-serif;
   margin: 0;
@@ -31,13 +40,17 @@ a{
 }
 
 hr{
-  border: 2px solid $gold;
+  border: none;
+  border-bottom: 2px solid $gold;
   margin: 5px;
 }
 
 button{
   padding: $minisize;
   font-size: $smallsize;
+}
+button:hover{
+  box-shadow: $boxshadow;
 }
 
 *{

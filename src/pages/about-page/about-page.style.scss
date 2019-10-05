@@ -1,0 +1,42 @@
+.about-page-content{
+    text-align: center;
+    margin: $bigsize;
+
+    &-header{
+        color: $seagreen;
+        font-size: $biggersize;
+        margin: $middlesize;
+        &__span{
+            font-style: italic;
+            font-weight: bold;
+            font-family: arial;
+            color: $gold;
+        }
+    }
+    &-introduction{
+        font-style: italic;
+        &-six-degrees__span{
+            font-weight: bold;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+    &-main-menu{
+        display: inline-flex;
+        &-item{
+            // display: inline;
+            background-color: $gold;
+            padding: $bigsize;
+            font-size: $middlesize;
+            margin: $middlesize $smallsize;
+            color: white;
+            border-radius: $minisize;
+            &:hover{
+                cursor: pointer;
+                transform: scale(1.02);
+                box-shadow: 0 $minisize $smallsize 0 rgba(0, 0, 0, 0.2), 0 $smallsize $middlesize 0 rgba(0, 0, 0, 0.19);
+            }
+        }
+    }
+}

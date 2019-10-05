@@ -1,29 +1,56 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
+import {connect} from 'react-redux'
+import {createStructuredSelector} from 'reselect';
 
-import HomePage from './pages/home-page/home-page';
-import PostDetail from './pages/post-detail/post-detail';
+import {selectCurrentUser} from './redux/user/user.selectors';
+
+import PostDetail from './pages/post-detail-page/post-detail-page';
 import Header from'./components/header/header.component';
-import Posts from './pages/posts/posts.component';
+import PostsPage from './pages/posts-page/posts-page';
 
-import {auth} from './firebase/firebase.utils';
+import {auth, createOrGetUser, firestore} from './firebase/firebase.utils';
+import {setCurrentUser, setUserPosts} from './redux/user/user.actions'
+
+import AboutPage from './pages/about-page/about-page';
+import userPostsPage from './pages/user-posts-page/user-posts-page';
+import UserProfilePage from './pages/user-profile-page/user-profile-page';
 
 class App extends React.Component {
-
-  constructor(){
-    super();
-    this.state = {
-      isLoggedIn:false,
-      currentUser:null,
-    }
-  }
 
   unsubscribeFromAuth = null;
 
   componentDidMount(){
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user=>{
-      this.setState({currentUser:user});
+    const {setCurrentUser, setUserPosts} = this.props;
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth=>{
+      if(userAuth){
+        const userRef = await createOrGetUser(userAuth);
+        // snapShot return many data that from firebase but not contain all from our database in firebase
+        // useing snapShot.data() will return all data from our database except id
+        userRef.onSnapshot(snapShot=>{
+          setCurrentUser({
+            id:snapShot.id,
+            ...snapShot.data(),
+          });
+        let list = [];
+        firestore.collection("posts")
+          .where('createdBy', '==', userRef)
+          .where('open', '==', true)
+          .get().then(snapshot=>{
+              snapshot.forEach(( post =>
+                  list = [...list, {id:post.id, ...post.data()}]
+                  ));
+        }).then(()=>{
+            setUserPosts(list);
+        });
+      });
+
+      }else{
+        setCurrentUser(userAuth);
+        setUserPosts([]);
+      }
     });
+
   }
 
   componentWillUnmount(){
@@ -31,20 +58,29 @@ class App extends React.Component {
   }
 
   render(){
-
     return (
       <div className="App">
-        <Header currentUser = {this.state.currentUser}/>
+        <Header/>
         <Switch>
-          <Route exact path="/" component={HomePage}/>
-          <Route exact path="/posts/" component={Posts}/>
-          <Route path="/posts/:postID" component={PostDetail}/>
+          <Route exact path="/" component={PostsPage}/>
+          <Route exact path="/about" component={AboutPage}/>
+          <Route exact path="/my-account/post-history" component={userPostsPage}/>
+          <Route exact path="/my-account/profile" component={UserProfilePage}/>
+          <Route path="/posts/postID=:postID" component={PostDetail}/>
         </Switch>
-        read=> https://stackoverflow.com/questions/51116747/react-router-v4-link-vs-redirect-vs-history
       </div>
     );
   }
 
 }
 
-export default App;
+const mapDispatchToProps = dispatch =>({
+  setCurrentUser: user => dispatch(setCurrentUser(user)),
+  setUserPosts: posts => dispatch(setUserPosts(posts)),
+})
+
+const mapStateToProps = createStructuredSelector ({
+  currentUser:selectCurrentUser 
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

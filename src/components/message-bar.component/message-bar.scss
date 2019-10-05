@@ -1,0 +1,21 @@
+.message{
+    background-position: $smallsize 0.7*$smallsize;
+    background-repeat: no-repeat;
+    background-size: $smallsize auto;
+    padding: $minisize 0 $minisize $biggersize;
+}
+.error{
+    color: red;
+    background-color: #ffefef;
+    background-image: url("../../assets/image/icon-no.svg");
+}
+.warning {
+    color:$gold;
+    background-color: #ffc;
+    background-image: url("../../assets/image/icon-alert.svg");
+}
+.infor {
+    color:$seagreen;
+    background-color: #ffc;
+    background-image: url("../../assets/image/icon-yes.svg");
+}
