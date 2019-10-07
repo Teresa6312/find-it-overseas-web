@@ -1,0 +1,18 @@
+.post-form {
+    margin: $smallsize $smallsize;
+    display: flex;
+    flex-direction: column;
+    &-tabs{
+      margin:$minisize;
+      &-item{
+        display: inline;
+        border-radius: $smallsize;
+        background-color: $gold;
+        margin: 0 $minisize;
+        padding: $minisize $smallsize;
+        &-delete{
+          color: red;
+        }
+      }
+    }
+  }

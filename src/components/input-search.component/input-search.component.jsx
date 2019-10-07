@@ -2,8 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import {MdSearch} from 'react-icons/md';
 
-const SearchInput = ({id, name, addClassName, handleChange,...otherProps}) =>(
+const SearchInput = ({id, name, labelText, addClassName, handleChange,...otherProps}) =>(
     <div className={`search-block ${addClassName?addClassName:name}`}>
+        {
+            labelText?
+            <label
+                htmlFor={name} 
+                className={`search-block__label ${addClassName?addClassName:name}__label`}
+                >
+                {labelText}
+            </label>
+            :null
+        }
         <input 
             type="search" 
             id={id?id:`${name}_id`}
@@ -22,7 +32,6 @@ const SearchInput = ({id, name, addClassName, handleChange,...otherProps}) =>(
 
 SearchInput.propTypes = {
     name: PropTypes.string.isRequired,
-    handleChange: PropTypes.func.isRequired
 };
 
 export default SearchInput;

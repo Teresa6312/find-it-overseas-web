@@ -1,22 +1,26 @@
 .form__button {
-    min-width: 165px;
+    min-width: $supersize;
     width: auto;
-    height: 50px;
-    line-height: $supersize;
-    padding: 0 $biggersize 0 $biggersize;
-    background-color: $gold;
-    color: black;
+    line-height: $biggersize;
+    padding: 0 $bigsize;
+    background-color: $teal;
     text-transform: uppercase;
-    font-family: 'Open Sans Condensed';
     font-weight: bolder;
     border: none;
     cursor: pointer;
-    margin-right: $minisize;
-    margin-bottom: $minisize;
-  
+    margin: $minisize 0 $minisize  $minisize;
+    float: right;
+    color: white;
+
     &:hover {
-      background-color: white;
-      color: black;
-      border: 1px solid $gold;
+      opacity: 0.6;
     }
+  }
+
+  .red{
+    background-color: red;
+  }
+
+  .gold{
+    background-color: $gold;
   }

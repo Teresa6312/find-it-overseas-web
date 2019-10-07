@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
+import { createStructuredSelector } from 'reselect';
 
 import {postTypes} from '../../assets/data/data';
 
@@ -8,7 +9,7 @@ import SearchInput from '../../components/input-search.component/input-search.co
 import SingleChoice from '../../components/single-choice.component/single-choice.component';
 import ViewedPostsHistory from '../../components/viewed-posts-history.component/viewed-posts-history.component';
 import PostsDisplay from '../../components/posts-display.component/posts-display.component';
-import { createStructuredSelector } from 'reselect';
+
 import { selectUserPosts, selectCurrentUser } from '../../redux/user/user.selectors';
 import { showLogInModal } from '../../redux/modal/modal.action';
 
@@ -36,7 +37,6 @@ class UserPostsPage extends React.Component {
         this.setState({
           selectedPostType: e.currentTarget.value
         }));
-
         
     render(){
         const PostBlockDisplayClassName = this.state.displayAsList? "user-posts-page-display-list": "user-posts-page-display-card";
@@ -53,10 +53,7 @@ class UserPostsPage extends React.Component {
                 }       
             }       
             })
-        let  postTypeChoices = ['all']
-        for (let key in postTypes) {
-            postTypeChoices.push(postTypes[key]);
-        }
+
         return(
             <div className='user-posts-page'> 
                 <div className="user-posts-page-header">
@@ -69,19 +66,8 @@ class UserPostsPage extends React.Component {
                     handleChange={e=>{this.setState({searchField:e.target.value},()=>{
                         console.log("----------");
                     })}}/>
-                <SingleChoice
-                    name="user-posts-page-post-types"
-                    list={postTypeChoices}
-                    selectedOption = {this.state.selectedPostType}
-                    handleChange = {this.selectPostType}
-                />
-                <CheckBoxInput 
-                    name="user-posts-page-display-option"
-                    isChecked={this.state.displayAsList}
-                    handleChange={e=>{this.setState({displayAsList:e.target.checked})}}
-                    labelText="display as list"
-                    />
-                <div className = {`user-posts-page-display`}>
+
+                <div className = "user-posts-page-display">
                     {filterPost.length>0? 
                         <PostsDisplay
                             posts={filterPost}

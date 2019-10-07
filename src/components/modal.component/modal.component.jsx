@@ -24,7 +24,7 @@ class Modal extends React.Component {
                             this.props.title ?
                                 this.props.title
                                 :
-                                <Logo className="logo-small"/>
+                                <Logo className="logo-small center gold"/>
                         }                   
                     </div>
 

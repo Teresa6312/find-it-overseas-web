@@ -7,7 +7,8 @@ import {selectUserPosts} from '../../redux/user/user.selectors';
 import PostsItemSummary from '../posts-item-summary.component/posts-item-summary.component';
 
 const OpenPostsDropdown = ({userPosts}) =>{
-
+    if(userPosts.length===0) return null;
+    
     return(
         <div className="open-posts-dropdown">
             { 

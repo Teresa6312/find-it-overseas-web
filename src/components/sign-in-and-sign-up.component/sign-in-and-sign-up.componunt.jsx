@@ -130,7 +130,7 @@ class SignInAndSignUp extends React.Component {
             type='email'
             handleChange={this.textInputHandleChange}
             value={email}
-            labelText='email'
+            shrink={true}
             required
           />
           <TextInput
@@ -138,7 +138,7 @@ class SignInAndSignUp extends React.Component {
             type='password'
             value={password}
             handleChange={this.textInputHandleChange}
-            labelText='password'
+            shrink={true}
             required
           />
           {register?
@@ -150,6 +150,7 @@ class SignInAndSignUp extends React.Component {
               value={confirmPassword}
               handleChange={this.textInputHandleChange}
               labelText='confirm password'
+              shrink={true}
               required
             />
             <TextInput
@@ -158,6 +159,7 @@ class SignInAndSignUp extends React.Component {
               value={displayName}
               handleChange={this.textInputHandleChange}
               labelText='username'
+              shrink={true}
               required
             />            
             <TextInput
@@ -166,13 +168,15 @@ class SignInAndSignUp extends React.Component {
               value={firstname}
               handleChange={this.textInputHandleChange}
               labelText='first name'
+              shrink={true}
             />
             <TextInput
               name='lastname'
               type='text'
               value={lastname}
               handleChange={this.textInputHandleChange}
-              labelText='first name'         
+              labelText='last name'  
+              shrink={true}       
             />    
             <TextInput
               name='country'
@@ -180,6 +184,7 @@ class SignInAndSignUp extends React.Component {
               value={country}
               handleChange={this.textInputHandleChange}
               labelText='country'
+              shrink={true}
               required
             />  
             <TextInput
@@ -188,6 +193,7 @@ class SignInAndSignUp extends React.Component {
               value={phoneNumber}
               handleChange={this.textInputHandleChange}
               labelText='phone number'
+              shrink={true}
               required
             />   
             <TextInput
@@ -195,7 +201,7 @@ class SignInAndSignUp extends React.Component {
               type='text'
               value={language}
               handleChange={this.textInputHandleChange}
-              labelText='language'
+              shrink={true}
               required
             />                     
            </div> 

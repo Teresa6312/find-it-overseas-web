@@ -5,15 +5,17 @@
         display: grid;
         grid-gap: 10px;
     }
-
     &-display-card{
         grid-template-columns: 1fr 1fr 1fr 1fr;
 
     }
-
+    &-post-types{
+        display: inline;
+        line-height: 1.3*$supersize;
+    }
     &-display-option{
-        text-align: right;
-        padding: 10px 0;
+        float: right;
+        line-height: 1.3*$supersize;
     }
 }
 

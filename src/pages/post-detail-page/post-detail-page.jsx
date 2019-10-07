@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
-
+import {postTypes} from '../../assets/data/data';
 import {firestore} from '../../firebase/firebase.utils';
 import {setMessage} from '../../redux/message/message.action';
 import {viewPost} from '../../redux/history/history.action';
@@ -9,46 +9,52 @@ import {selectCurrentUser} from '../../redux/user/user.selectors';
 import {verifyUser} from '../../code/permission';
 import { selectViewedPosts } from '../../redux/history/history.selectors';
 
-const PostsDetail =({viewedPosts,currentUser, setMessage, viewPost, match, history})=>{
-    firestore.doc(`posts/${match.params.postID}`).onSnapshot(
-        snapshot=>{
-            if(!snapshot.exists){
-                setMessage({
-                    type:"error",
-                    messageText:"Request Post was not excit!"
-                })
-                history.push('/posts/');
-            }else{
-                const post = snapshot.data();
-                if(post.open||verifyUser(currentUser.id)){
-                    viewPost({
-                        id: snapshot.id,
-                        title:post.title
-                    })
-                }else{
+
+class PostsDetail extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={
+            post:null
+        }
+    }
+    render(){
+        const {currentUser, setMessage, viewPost, match, history} = this.props;
+        firestore.doc(`posts/${match.params.postID}`).onSnapshot(
+            snapshot=>{
+                if(!snapshot.exists){
                     setMessage({
                         type:"error",
-                        messageText:"Request Post was closed!"
+                        messageText:"Request Post was not excit!"
                     })
                     history.push('/posts/');
+                }else{
+                    const postData = snapshot.data();
+                    if(postData.open||verifyUser(currentUser.id)){
+                        viewPost({
+                            id: snapshot.id,
+                            title:postData.title
+                        });
+                        this.setState({post:postData});
+                    }else{
+                        setMessage({
+                            type:"error",
+                            messageText:"Request Post was closed!"
+                        })
+                        history.push('/posts/');
+                    }
                 }
+    
             }
-
-        }
-    )
-    const post  = viewedPosts.find( e =>{
-        if(e.id===match.params.postID){
-            return e;
-        }return null;
-    });
-    return (
-        <div>
-        {post?
-            post.title
-            :null
-        }
-        </div>
-    )
+        )
+        const {post} = this.state;
+        if(!post) return null;
+        return(
+            <div className="post-detail-page">
+                <div className="post-detail-page-title">{post.title} ({postTypes[post.type]})</div>
+                <div className="post-detail-page-description">{post.description}</div>
+            </div>
+        )
+    }
 }
 
 const mapStateToProps = createStructuredSelector ({

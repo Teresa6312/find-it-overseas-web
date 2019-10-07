@@ -1,8 +1,11 @@
 @mixin shrinkLabel {
-  top: -0.7*$smallsize;
-  left: -0.1*$minisize;
+  top: -0.6*$smallsize;
+  left: 0;
   font-size: $smallsize;
-  color: $seagreen;
+  color: $teal;
+  text-transform: capitalize;
+  z-index: 5;
+  background-color: white;
 }
 
 .input-text-block {
@@ -10,24 +13,19 @@
   margin: $smallsize 0;
 
   &__input {
-    background: none;
-    background-color: white;
     color: black;
-    padding: $minisize $minisize 0.5*$minisize $minisize;
+    padding: $minisize;
     font-size: $smallsize;
     display: block;
     width: 100%;
     border: none;
-    border-radius: 0;
-    border-bottom: 1px solid $gold;
-    margin: $minisize $minisize $minisize 0;
+    border-bottom: 1px solid $teal;
+    letter-spacing: 0.15*$minisize;
 
     &:focus {
       outline: none;
-    }
-
-    &:focus ~ .input-text__label {
-      @include shrinkLabel();
+      border: 1px solid $teal;
+      border-radius: 0.5*$minisize;
     }
   }
 
@@ -35,7 +33,7 @@
     letter-spacing: 0.5*$minisize;
   }
 
-  &__label {
+  &-shirnk__label {
     color: $grey;
     font-size: 0.8*$smallsize;
     position: absolute;
@@ -47,6 +45,15 @@
     &.shrink {
       @include shrinkLabel();
     }
+  }
+  &__label {
+    position: absolute;
+    font-size: $smallsize;
+    color: $teal;
+    text-transform: capitalize;
+    top: -0.5*$smallsize;
+    background-color: white;
+    font-weight: bold;
   }
   &-required-icon{
     color:red;

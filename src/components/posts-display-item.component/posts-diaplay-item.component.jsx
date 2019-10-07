@@ -1,10 +1,9 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
-
+import PropTypes from 'prop-types';
 
 const PostsDisplayItem = ({addClassName, post, history}) =>(
     <div 
-        key={post.id} 
         className={`posts-display-item ${addClassName}`}
         onClick={()=>history.push(`/posts/postID=${post.id}`)}
         >
@@ -12,5 +11,9 @@ const PostsDisplayItem = ({addClassName, post, history}) =>(
     </div>
 )
 
+PostsDisplayItem.propTypes = {
+    post: PropTypes.object.isRequired,
+};
+  
 
 export default withRouter(PostsDisplayItem)

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const RadioInput = ({id, name, addClassName, 
                         value, labelText, handleChange,
-                        isChecked=false, selectedOption, ...otherProps
+                        ...otherProps
                     }) =>{
     return(
         <div className={`radio-block ${addClassName?addClassName:name}`}>
@@ -13,12 +13,10 @@ const RadioInput = ({id, name, addClassName,
                 name={name} 
                 className={`radio-block__input ${addClassName?addClassName:name}-radio__input`}
                 value={value} 
-                checked={selectedOption?value===selectedOption:isChecked}
-                onChange={handleChange}
                 {...otherProps}
             />
             <label htmlFor={name} className={`radio-block__label ${addClassName?addClassName:name}-radio__label`}>
-                {labelText?labelText:value}
+                {labelText}
             </label>
         </div>
     )
@@ -26,6 +24,8 @@ const RadioInput = ({id, name, addClassName,
 
 RadioInput.propTypes = {
     name: PropTypes.string.isRequired,
+    value:PropTypes.string.isRequired,
+    labelText:PropTypes.string.isRequired,
 };
 
 export default RadioInput;
