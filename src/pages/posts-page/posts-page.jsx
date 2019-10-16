@@ -61,15 +61,13 @@ class PostsPage extends React.Component {
     postTypeChoices = Object.entries({0:"all",...postTypes})
 
     render(){
-        const PostBlockDisplayClassName = this.state.displayAsList? "posts-page-display-list": "posts-page-display-card";
-        const {posts, newPost, searchField, selectedPostType} = this.state;
+        const {posts, newPost, searchField, selectedPostType,displayAsList} = this.state;
         const {currentUser, showLogInModal} = this.props;
         const filterPost = posts.filter(post=>{
             if(selectedPostType==="0"){
                 return post.title.toLowerCase().includes(searchField.toLowerCase()) 
             }else{
-                console.log(post.type)
-                if(post.type===parseInt(selectedPostType)){
+                if(post.postType===selectedPostType){
                    return post.title.toLowerCase().includes(searchField.toLowerCase())
                 }else{
                     return false
@@ -100,7 +98,7 @@ class PostsPage extends React.Component {
                         show={newPost}
                         width="small"
                         >
-                        <PostForm/>
+                        <PostForm onClose={this.newPostModal}/>
                     </Modal>
                     :null
                 
@@ -117,10 +115,10 @@ class PostsPage extends React.Component {
                     {filterPost? 
                         <PostsDisplay
                             posts={filterPost}
-                            addClassName={PostBlockDisplayClassName}
+                            displayAsList={displayAsList}
                         />
                         :
-                        <div className={`${PostBlockDisplayClassName}-item`}> no post found</div>
+                        null
                     }
                 </div>
                 <ViewedPostsHistory/>

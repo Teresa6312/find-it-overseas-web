@@ -50,7 +50,7 @@ class PostsDetail extends React.Component{
         if(!post) return null;
         return(
             <div className="post-detail-page">
-                <div className="post-detail-page-title">{post.title} ({postTypes[post.type]})</div>
+                <div className="post-detail-page-title">{post.title} ({postTypes[post.postType]})</div>
                 <div className="post-detail-page-description">{post.description}</div>
             </div>
         )

@@ -1,7 +1,10 @@
 import React from 'react';
 import {MdClose} from 'react-icons/md';
+import { createStructuredSelector } from 'reselect';
+import {connect} from 'react-redux';
 
 import {postTypes} from '../../assets/data/data';
+import {selectCurrentUser} from '../../redux/user/user.selectors';
 
 import TextInput from '../input-text.component/input-text.component';
 import SearchInput from '../input-search.component/input-search.component';
@@ -9,7 +12,7 @@ import TextareaInput from '../input-textarea.component/input-textarea.component'
 import SingleChoice from '../single-choice.component/single-choice.component';
 import FormButton from '../form-button.component/form-button.component';
 import MessageBar from '../message-bar.component/message-bar.component';
-import { timeout } from 'q';
+import { firestore } from '../../firebase/firebase.utils';
 
 class PostForm extends React.Component{
     constructor(){
@@ -43,25 +46,59 @@ class PostForm extends React.Component{
 
     textInputHandleChange = event => {
         const { value, name } = event.target;
-        
         this.setState({ [name]: value });
       };
 
     verifyForm=()=>{
-        const {tabs, postType} = this.state;
+        const {tabs, title, postType, description}= this.state;
+        console.log(description)
         if(postType===''){
-            this.setState({message:{type:"warning", messageText:"Please select Your request Type."}})
+            this.setState({message:{type:"warning", messageText:"Request Type is required!"}})
             return 
         }
-        if(tabs.length<3){
+        else if(tabs.length<3){
             this.setState({message:{type:"warning", messageText:"Minimum 3 tbas."}})
             return 
+        }else{
+            const values = {title, description}
+            for(const key in values){
+                if(values[key]===''){
+                    this.setState({message:{type:"warning", messageText: key+" is required!"}})
+                    return              
+                }
+            }
+
+            this.setState({message:null})
+            this.submitForm();
+            return true;
         }
-        return;
+    }
+    onClose = () => {
+        this.props.onClose();
+      };
+
+    submitForm = () =>{
+        if(this.verifyForm){
+            const {tabs, title, postType, description}= this.state;
+            const {currentUser} = this.props;
+            const createdBy = firestore.collection("users").doc(currentUser.id)
+            const createdAt = new Date();
+            console.log(createdBy, createdAt, tabs, title, postType, description)
+            firestore.collection("posts").add({
+                open: true,
+                createdBy,
+                createdAt,
+                tabs,
+                title,
+                postType,
+                description,
+            })
+            this.onClose();
+        }
     }
 
     render(){
-        const {tabs, title, postType, message}= this.state;
+        const {tabs, title, postType, description, message}= this.state;
         return(
             <div className="post-form">
                 {
@@ -112,11 +149,12 @@ class PostForm extends React.Component{
                     />
          
                     <TextareaInput
-                        name="discription"
+                        name="description"
+                        value={description}
                         handleChange={this.textInputHandleChange}
                         required/>
                     <FormButton 
-                        type={postType!==''&&tabs.length>=3?'submit':'button'} 
+                        type="button"
                         onClick={this.verifyForm}>
                         submit
                     </FormButton>
@@ -127,4 +165,9 @@ class PostForm extends React.Component{
     }
 }
 
-export default PostForm;
+
+const mapStateToProps=createStructuredSelector({
+    currentUser:selectCurrentUser
+})
+
+export default connect(mapStateToProps)(PostForm);

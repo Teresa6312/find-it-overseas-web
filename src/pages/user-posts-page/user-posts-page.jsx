@@ -39,9 +39,8 @@ class UserPostsPage extends React.Component {
         }));
         
     render(){
-        const PostBlockDisplayClassName = this.state.displayAsList? "user-posts-page-display-list": "user-posts-page-display-card";
         const {userPosts} = this.props;
-        const {searchField, selectedPostType} = this.state;
+        const {searchField, selectedPostType, displayAsList} = this.state;
         const filterPost = userPosts.filter(post=>{
             if(selectedPostType==="all"){
                 return post.title.toLowerCase().includes(searchField.toLowerCase()) 
@@ -71,10 +70,10 @@ class UserPostsPage extends React.Component {
                     {filterPost.length>0? 
                         <PostsDisplay
                             posts={filterPost}
-                            addClassName={PostBlockDisplayClassName}
+                            displayAsList={displayAsList}
                         />
                         :
-                        <div className={`${PostBlockDisplayClassName}-item`}> no post found</div>
+                        null
                     }
                 </div>
                 <ViewedPostsHistory/>
